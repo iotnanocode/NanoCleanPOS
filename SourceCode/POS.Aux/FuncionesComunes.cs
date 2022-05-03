@@ -212,8 +212,16 @@ namespace POS.Aux
                 throw new FormatException("Formato incorrecto");
             }
         }
-    
-    
+        public void ValidaCombo(DevExpress.XtraEditors.SearchLookUpEdit c)
+        {
+            if (c.EditValue == null)
+            {
+                MessageBox.Show("Error en el campo: " + c.Properties.AccessibleName, "Debe seleccionar un valor del combo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw new FormatException("Formato incorrecto");
+            }
+        }
+
+
         public void ValidaLookUp(DevExpress.XtraEditors.LookUpEdit c)
         {
             if (c.EditValue==null)

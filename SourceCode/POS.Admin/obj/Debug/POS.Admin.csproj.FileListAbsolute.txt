@@ -120,3 +120,5 @@ C:\GitRepos\NanoCleanPOS\SourceCode\POS.Admin\bin\Debug\ru\DevExpress.Office.v21
 C:\GitRepos\NanoCleanPOS\SourceCode\POS.Admin\obj\Debug\POS.Admin.exe.config
 C:\GitRepos\NanoCleanPOS\SourceCode\POS.Admin\obj\Debug\POS.Admin.Usuario.resources
 C:\GitRepos\NanoCleanPOS\SourceCode\POS.Admin\obj\Debug\POS.Admin.UsuarioBuscar.resources
+C:\GitRepos\NanoCleanPOS\SourceCode\POS.Admin\obj\Debug\POS.Admin.Almacen.resources
+C:\GitRepos\NanoCleanPOS\SourceCode\POS.Admin\obj\Debug\POS.Admin.AlmacenBuscar.resources

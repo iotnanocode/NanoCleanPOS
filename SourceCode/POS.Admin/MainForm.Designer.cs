@@ -35,15 +35,22 @@ namespace POS.Admin
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.TiendasBuscarBt = new DevExpress.XtraBars.BarButtonItem();
             this.NewTiendaBt = new DevExpress.XtraBars.BarButtonItem();
+            this.StatusLabel = new DevExpress.XtraBars.BarStaticItem();
+            this.UserRLabel = new DevExpress.XtraBars.BarStaticItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage4 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
+            this.BuscarAlmBt = new DevExpress.XtraBars.BarButtonItem();
+            this.NewAlmBt = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,9 +63,13 @@ namespace POS.Admin
             this.barButtonItem1,
             this.barButtonItem2,
             this.TiendasBuscarBt,
-            this.NewTiendaBt});
+            this.NewTiendaBt,
+            this.StatusLabel,
+            this.UserRLabel,
+            this.BuscarAlmBt,
+            this.NewAlmBt});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 5;
+            this.ribbon.MaxItemId = 9;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -101,6 +112,18 @@ namespace POS.Admin
             this.NewTiendaBt.Name = "NewTiendaBt";
             this.NewTiendaBt.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.NewTiendaBt_ItemClick);
             // 
+            // StatusLabel
+            // 
+            this.StatusLabel.Caption = "Version: ";
+            this.StatusLabel.Id = 5;
+            this.StatusLabel.Name = "StatusLabel";
+            // 
+            // UserRLabel
+            // 
+            this.UserRLabel.Caption = "User";
+            this.UserRLabel.Id = 6;
+            this.UserRLabel.Name = "UserRLabel";
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -118,14 +141,34 @@ namespace POS.Admin
             // ribbonPage2
             // 
             this.ribbonPage2.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup2});
+            this.ribbonPageGroup2,
+            this.ribbonPageGroup5,
+            this.ribbonPageGroup6,
+            this.ribbonPageGroup7});
             this.ribbonPage2.Name = "ribbonPage2";
             this.ribbonPage2.Text = "Inventarios";
             // 
             // ribbonPageGroup2
             // 
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
-            this.ribbonPageGroup2.Text = "ribbonPageGroup2";
+            this.ribbonPageGroup2.Text = "Productos";
+            // 
+            // ribbonPageGroup5
+            // 
+            this.ribbonPageGroup5.ItemLinks.Add(this.BuscarAlmBt);
+            this.ribbonPageGroup5.ItemLinks.Add(this.NewAlmBt);
+            this.ribbonPageGroup5.Name = "ribbonPageGroup5";
+            this.ribbonPageGroup5.Text = "Almacenes";
+            // 
+            // ribbonPageGroup6
+            // 
+            this.ribbonPageGroup6.Name = "ribbonPageGroup6";
+            this.ribbonPageGroup6.Text = "Existencias";
+            // 
+            // ribbonPageGroup7
+            // 
+            this.ribbonPageGroup7.Name = "ribbonPageGroup7";
+            this.ribbonPageGroup7.Text = "Movimientos";
             // 
             // ribbonPage3
             // 
@@ -155,10 +198,28 @@ namespace POS.Admin
             // 
             // ribbonStatusBar
             // 
+            this.ribbonStatusBar.ItemLinks.Add(this.StatusLabel);
+            this.ribbonStatusBar.ItemLinks.Add(this.UserRLabel);
             this.ribbonStatusBar.Location = new System.Drawing.Point(0, 425);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbon;
             this.ribbonStatusBar.Size = new System.Drawing.Size(692, 24);
+            // 
+            // BuscarAlmBt
+            // 
+            this.BuscarAlmBt.Caption = "Buscar Almacen";
+            this.BuscarAlmBt.Id = 7;
+            this.BuscarAlmBt.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem3.ImageOptions.SvgImage")));
+            this.BuscarAlmBt.Name = "BuscarAlmBt";
+            this.BuscarAlmBt.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BuscarAlmBt_ItemClick);
+            // 
+            // NewAlmBt
+            // 
+            this.NewAlmBt.Caption = "Nuevo Almacen";
+            this.NewAlmBt.Id = 8;
+            this.NewAlmBt.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem4.ImageOptions.SvgImage")));
+            this.NewAlmBt.Name = "NewAlmBt";
+            this.NewAlmBt.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.NewAlmBt_ItemClick);
             // 
             // MainForm
             // 
@@ -173,6 +234,7 @@ namespace POS.Admin
             this.StatusBar = this.ribbonStatusBar;
             this.Text = "Nanoclean Admin POS";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -195,5 +257,12 @@ namespace POS.Admin
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
         private DevExpress.XtraBars.BarButtonItem TiendasBuscarBt;
         private DevExpress.XtraBars.BarButtonItem NewTiendaBt;
+        private DevExpress.XtraBars.BarStaticItem StatusLabel;
+        private DevExpress.XtraBars.BarStaticItem UserRLabel;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup6;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup7;
+        private DevExpress.XtraBars.BarButtonItem BuscarAlmBt;
+        private DevExpress.XtraBars.BarButtonItem NewAlmBt;
     }
 }

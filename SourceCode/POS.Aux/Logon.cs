@@ -24,13 +24,9 @@ namespace POS.Aux
 
         private void OKbt_Click(object sender, EventArgs e)
         {
-            string cmd = "SELECT Nombre" +
-                            ",Modulo " +
-                            ",`Descripcion Modulo` " +
-                            ",Lectura " +
-                            ",Escritura " +
-                        "FROM cf_vwPermisosUsuario " +
-                        "WHERE AES_DECRYPT(pwd,UNHEX('F3229A0B371ED2D9441B830D21A390C3')) = '" + PwdText.Text + "'  AND Usuario='" + UserText.Text + "'";
+            string cmd = "SELECT Nombre " +
+                        "FROM users " +
+                        "WHERE CAST(AES_DECRYPT(pwd,UNHEX('F3229A0B371ED2D9441B830D21A390C3')) AS CHAR) = '" + PwdText.Text + "'  AND Usuario='" + UserText.Text + "'";
             Permisos = ac.ObtieneTabla(cmd);
             User = UserText.Text;
             DataTableReader dtr = Permisos.CreateDataReader();
