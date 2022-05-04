@@ -106,5 +106,19 @@ namespace POS.Admin
             almacenBuscar.MdiParent = this;
             almacenBuscar.Show();
         }
+
+        private void BuscarProductoBt_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            ProductoBuscar nuevaVentana = new ProductoBuscar();
+            nuevaVentana.MdiParent = this;
+            nuevaVentana.Show();
+        }
+
+        private void NewProductBt_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Producto nuevaVentana = new Producto();
+            nuevaVentana.MdiParent = this;
+            nuevaVentana.Show();
+        }
     }
 }

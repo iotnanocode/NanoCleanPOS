@@ -37,6 +37,8 @@ namespace POS.Admin
             this.NewTiendaBt = new DevExpress.XtraBars.BarButtonItem();
             this.StatusLabel = new DevExpress.XtraBars.BarStaticItem();
             this.UserRLabel = new DevExpress.XtraBars.BarStaticItem();
+            this.BuscarAlmBt = new DevExpress.XtraBars.BarButtonItem();
+            this.NewAlmBt = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -49,8 +51,8 @@ namespace POS.Admin
             this.ribbonPage4 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
-            this.BuscarAlmBt = new DevExpress.XtraBars.BarButtonItem();
-            this.NewAlmBt = new DevExpress.XtraBars.BarButtonItem();
+            this.BuscarProductoBt = new DevExpress.XtraBars.BarButtonItem();
+            this.NewProductBt = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,9 +69,11 @@ namespace POS.Admin
             this.StatusLabel,
             this.UserRLabel,
             this.BuscarAlmBt,
-            this.NewAlmBt});
+            this.NewAlmBt,
+            this.BuscarProductoBt,
+            this.NewProductBt});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 9;
+            this.ribbon.MaxItemId = 11;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -124,6 +128,22 @@ namespace POS.Admin
             this.UserRLabel.Id = 6;
             this.UserRLabel.Name = "UserRLabel";
             // 
+            // BuscarAlmBt
+            // 
+            this.BuscarAlmBt.Caption = "Buscar Almacen";
+            this.BuscarAlmBt.Id = 7;
+            this.BuscarAlmBt.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("BuscarAlmBt.ImageOptions.SvgImage")));
+            this.BuscarAlmBt.Name = "BuscarAlmBt";
+            this.BuscarAlmBt.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BuscarAlmBt_ItemClick);
+            // 
+            // NewAlmBt
+            // 
+            this.NewAlmBt.Caption = "Nuevo Almacen";
+            this.NewAlmBt.Id = 8;
+            this.NewAlmBt.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("NewAlmBt.ImageOptions.SvgImage")));
+            this.NewAlmBt.Name = "NewAlmBt";
+            this.NewAlmBt.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.NewAlmBt_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -150,6 +170,8 @@ namespace POS.Admin
             // 
             // ribbonPageGroup2
             // 
+            this.ribbonPageGroup2.ItemLinks.Add(this.BuscarProductoBt);
+            this.ribbonPageGroup2.ItemLinks.Add(this.NewProductBt);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             this.ribbonPageGroup2.Text = "Productos";
             // 
@@ -205,21 +227,21 @@ namespace POS.Admin
             this.ribbonStatusBar.Ribbon = this.ribbon;
             this.ribbonStatusBar.Size = new System.Drawing.Size(692, 24);
             // 
-            // BuscarAlmBt
+            // BuscarProductoBt
             // 
-            this.BuscarAlmBt.Caption = "Buscar Almacen";
-            this.BuscarAlmBt.Id = 7;
-            this.BuscarAlmBt.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem3.ImageOptions.SvgImage")));
-            this.BuscarAlmBt.Name = "BuscarAlmBt";
-            this.BuscarAlmBt.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BuscarAlmBt_ItemClick);
+            this.BuscarProductoBt.Caption = "Buscar Producto";
+            this.BuscarProductoBt.Id = 9;
+            this.BuscarProductoBt.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem3.ImageOptions.SvgImage")));
+            this.BuscarProductoBt.Name = "BuscarProductoBt";
+            this.BuscarProductoBt.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.BuscarProductoBt_ItemClick);
             // 
-            // NewAlmBt
+            // NewProductBt
             // 
-            this.NewAlmBt.Caption = "Nuevo Almacen";
-            this.NewAlmBt.Id = 8;
-            this.NewAlmBt.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem4.ImageOptions.SvgImage")));
-            this.NewAlmBt.Name = "NewAlmBt";
-            this.NewAlmBt.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.NewAlmBt_ItemClick);
+            this.NewProductBt.Caption = "Nuevo Producto";
+            this.NewProductBt.Id = 10;
+            this.NewProductBt.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem4.ImageOptions.SvgImage")));
+            this.NewProductBt.Name = "NewProductBt";
+            this.NewProductBt.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.NewProductBt_ItemClick);
             // 
             // MainForm
             // 
@@ -264,5 +286,7 @@ namespace POS.Admin
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup7;
         private DevExpress.XtraBars.BarButtonItem BuscarAlmBt;
         private DevExpress.XtraBars.BarButtonItem NewAlmBt;
+        private DevExpress.XtraBars.BarButtonItem BuscarProductoBt;
+        private DevExpress.XtraBars.BarButtonItem NewProductBt;
     }
 }

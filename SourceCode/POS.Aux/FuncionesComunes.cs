@@ -180,6 +180,18 @@ namespace POS.Aux
                 throw new FormatException("Formato incorrecto");
             }
         }
+        public void ValidaTxtFloat(DevExpress.XtraEditors.TextEdit t)
+        {
+            try
+            {
+                float.Parse(t.Text);
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Error en el campo: " + t.AccessibleName, "El valor Debería ser un numero real", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw new FormatException("Formato incorrecto");
+            }
+        }
         public void ValidaTxtNull(TextBox t)
         {
             if (t.Text == "")
@@ -238,14 +250,14 @@ namespace POS.Aux
                 throw new FormatException("Formato incorrecto");
             }
         }
-        //public void ValidaLookUp(DevExpress.XtraEditors.GridLookUpEdit c)
-        //{
-        //    if (c.EditValue == null)
-        //    {
-        //        MessageBox.Show("Error en el campo: " + c.Properties.AccessibleName, "Debe seleccionar un valor del combo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //        throw new FormatException("Formato incorrecto");
-        //    }
-        //}
+        public void ValidaCombo(DevExpress.XtraEditors.GridLookUpEdit c)
+        {
+            if (c.EditValue == null)
+            {
+                MessageBox.Show("Error en el campo: " + c.Properties.AccessibleName, "Debe seleccionar un valor del combo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw new FormatException("Formato incorrecto");
+            }
+        }
         public void ValidaDateEdit(DevExpress.XtraEditors.DateEdit c)
         {
             if (c.EditValue == null)

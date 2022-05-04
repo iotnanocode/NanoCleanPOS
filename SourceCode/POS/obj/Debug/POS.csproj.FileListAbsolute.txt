@@ -1,0 +1,9 @@
+C:\GitRepos\NanoCleanPOS\SourceCode\POS\bin\Debug\POS.exe.config
+C:\GitRepos\NanoCleanPOS\SourceCode\POS\bin\Debug\POS.exe
+C:\GitRepos\NanoCleanPOS\SourceCode\POS\bin\Debug\POS.pdb
+C:\GitRepos\NanoCleanPOS\SourceCode\POS\obj\Debug\POS.csproj.AssemblyReference.cache
+C:\GitRepos\NanoCleanPOS\SourceCode\POS\obj\Debug\POS.Properties.Resources.resources
+C:\GitRepos\NanoCleanPOS\SourceCode\POS\obj\Debug\POS.csproj.GenerateResource.cache
+C:\GitRepos\NanoCleanPOS\SourceCode\POS\obj\Debug\POS.csproj.CoreCompileInputs.cache
+C:\GitRepos\NanoCleanPOS\SourceCode\POS\obj\Debug\POS.exe
+C:\GitRepos\NanoCleanPOS\SourceCode\POS\obj\Debug\POS.pdb

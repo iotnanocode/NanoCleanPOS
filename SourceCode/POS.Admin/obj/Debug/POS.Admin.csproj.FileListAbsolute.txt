@@ -122,3 +122,5 @@ C:\GitRepos\NanoCleanPOS\SourceCode\POS.Admin\obj\Debug\POS.Admin.Usuario.resour
 C:\GitRepos\NanoCleanPOS\SourceCode\POS.Admin\obj\Debug\POS.Admin.UsuarioBuscar.resources
 C:\GitRepos\NanoCleanPOS\SourceCode\POS.Admin\obj\Debug\POS.Admin.Almacen.resources
 C:\GitRepos\NanoCleanPOS\SourceCode\POS.Admin\obj\Debug\POS.Admin.AlmacenBuscar.resources
+C:\GitRepos\NanoCleanPOS\SourceCode\POS.Admin\obj\Debug\POS.Admin.ProductoBuscar.resources
+C:\GitRepos\NanoCleanPOS\SourceCode\POS.Admin\obj\Debug\POS.Admin.Producto.resources
