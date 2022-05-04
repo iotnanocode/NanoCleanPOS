@@ -120,5 +120,26 @@ namespace POS.Admin
             nuevaVentana.MdiParent = this;
             nuevaVentana.Show();
         }
+
+        private void barButtonItem4_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Movimiento nuevaVentana = new Movimiento();
+            nuevaVentana.MdiParent = this;
+            nuevaVentana.Show();
+        }
+
+        private void BuscarMovBt_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            MovimientoBuscar nuevaVentana = new MovimientoBuscar();
+            nuevaVentana.MdiParent = this;
+            nuevaVentana.Show();
+        }
+
+        private void barButtonItem5_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            Existencias nuevaVentana = new Existencias();
+            nuevaVentana.MdiParent = this;
+            nuevaVentana.Show();
+        }
     }
 }

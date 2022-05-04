@@ -92,6 +92,7 @@
   <ItemGroup>
     <Compile Include="AccessConection.cs" />
     <Compile Include="FuncionesComunes.cs" />
+    <Compile Include="FuncionesPOS.cs" />
     <Compile Include="IntToText.cs" />
     <Compile Include="Logon.cs">
       <SubType>Form</SubType>
