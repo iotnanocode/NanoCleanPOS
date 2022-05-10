@@ -127,3 +127,7 @@ C:\GitRepos\NanoCleanPOS\SourceCode\POS.Admin\obj\Debug\POS.Admin.Producto.resou
 C:\GitRepos\NanoCleanPOS\SourceCode\POS.Admin\obj\Debug\POS.Admin.Movimiento.resources
 C:\GitRepos\NanoCleanPOS\SourceCode\POS.Admin\obj\Debug\POS.Admin.MovimientoBuscar.resources
 C:\GitRepos\NanoCleanPOS\SourceCode\POS.Admin\obj\Debug\POS.Admin.Existencias.resources
+C:\GitRepos\NanoCleanPOS\SourceCode\POS.Admin\bin\Debug\POS.Admin.exe.manifest
+C:\GitRepos\NanoCleanPOS\SourceCode\POS.Admin\bin\Debug\POS.Admin.application
+C:\GitRepos\NanoCleanPOS\SourceCode\POS.Admin\obj\Debug\POS.Admin.exe.manifest
+C:\GitRepos\NanoCleanPOS\SourceCode\POS.Admin\obj\Debug\POS.Admin.application
