@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using POS.Aux;
+using POS.Aux.Models;
 
 namespace POS.Admin
 {
@@ -19,23 +20,27 @@ namespace POS.Admin
         FuncionesComunes fc;
         DataTable AlmacenesDt;
         string CLASIFICACION_ENTRADAS = "420c22d6-cb27-11ec-9d64-0242ac120002";
-        public Movimiento()
+        Licencia CurrentLicence;
+        string USER_ID;
+        public Movimiento(Licencia CurrentLicence,string USER_ID)
         {
             InitializeComponent();
             ac = new AccessConeccion();
             fp = new FuncionesPOS();
             fc = new FuncionesComunes();
+            this.CurrentLicence = CurrentLicence;
+            this.USER_ID = USER_ID;
             Inicializa();
         }
         private void Inicializa()
         {
-            string cmd = "SELECT ID, FK_Categoria, UPC, Descripcion, Presentacion, Costo, Precio, FK_Envase, FK_Unidad, Activa FROM productos WHERE ACtiva=1;";
+            string cmd = $"SELECT ID, FK_Categoria, UPC, Descripcion, Presentacion, Costo, Precio, FK_Envase, FK_Unidad, Activa FROM productos WHERE ACtiva=1 AND FK_Licencia='{CurrentLicence.ID}';";
             ProductoLu.Properties.DataSource = ac.ObtieneTabla(cmd);
 
             cmd = "SELECT ID, Descripcion, Activa FROM unidades;";
             UnidadLu.Properties.DataSource = ac.ObtieneTabla(cmd);
 
-            cmd = $"SELECT ID, FK_Categoria, Descripcion, Ubicacion, Activa FROM almacenes WHERE Activa=1;";
+            cmd = $"SELECT ID, FK_Categoria, Descripcion, Ubicacion, Activa FROM almacenes WHERE Activa=1 AND FK_Licencia='{CurrentLicence.ID}';";
             AlmacenesDt = ac.ObtieneTabla(cmd);
 
             OrigenLu.Properties.DataSource = AlmacenesDt;
@@ -62,7 +67,7 @@ namespace POS.Admin
             else
             {
                 /*es un movimiento y el costo se obtendra forzosamente del promedio del almacen origen*/
-                string cmd = $"SELECT CostoPromedio FROM nanoclean.existencias WHERE FK_Producto='{ProductoLu.EditValue}' AND FK_Almacen='{OrigenLu.EditValue}';";
+                string cmd = $"SELECT CostoPromedio FROM existencias WHERE FK_Producto='{ProductoLu.EditValue}' AND FK_Almacen='{OrigenLu.EditValue}';";
                 CostoTx.Enabled = false;
                 CostoTx.EditValue = ac.ExecutaEscalar(cmd).ToString();
             }
@@ -91,7 +96,7 @@ namespace POS.Admin
 
         private void MoverInventario(string IDProducto, float Cantidad, string IDUnidad , float Costo, string IDAlmacenOrigen, string IDAlmacenDestino, DateTime Fecha)
         {
-            string cmd = $"CALL sp_MoverInventario('{IDProducto}', '{Cantidad}','{IDUnidad}', '{Costo}', '{IDAlmacenOrigen}','{IDAlmacenDestino}', '{Fecha.ToString("yyyy-MM-dd HH:mm")}'); ";
+            string cmd = $"CALL sp_MoverInventario('{USER_ID}','{IDProducto}', '{Cantidad}','{IDUnidad}', '{Costo}', '{IDAlmacenOrigen}','{IDAlmacenDestino}', '{Fecha.ToString("yyyy-MM-dd HH:mm")}'); ";
             ac.ExecutaEscalar(cmd);
         }
     }

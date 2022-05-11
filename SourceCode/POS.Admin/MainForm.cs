@@ -21,7 +21,7 @@ namespace POS.Admin
     {
         AccessConeccion ac;
         FuncionesComunes fc;
-        Licencia CURRENT_LICENCE;
+        Licencia CurrentLicence;
         string User;
         public MainForm()
         {
@@ -33,7 +33,7 @@ namespace POS.Admin
 
         private void NewTiendaBt_ItemClick(object sender, ItemClickEventArgs e)
         {
-            Tienda t = new Tienda();
+            Tienda t = new Tienda(CurrentLicence);
             t.MdiParent = this;
             t.Show();
         }
@@ -48,21 +48,21 @@ namespace POS.Admin
 
         private void TiendasBuscarBt_ItemClick(object sender, ItemClickEventArgs e)
         {
-            TiendasBuscar tiendasBuscar = new TiendasBuscar();
+            TiendasBuscar tiendasBuscar = new TiendasBuscar(CurrentLicence);
             tiendasBuscar.MdiParent = this;
             tiendasBuscar.Show();
         }
 
         private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
         {
-            UsuarioBuscar usuarioBuscar = new UsuarioBuscar();
+            UsuarioBuscar usuarioBuscar = new UsuarioBuscar(CurrentLicence);
             usuarioBuscar.MdiParent = this;
             usuarioBuscar.Show();
         }
 
         private void barButtonItem2_ItemClick(object sender, ItemClickEventArgs e)
         {
-            Usuario usuario = new Usuario();
+            Usuario usuario = new Usuario(CurrentLicence);
             usuario.MdiParent = this;
             usuario.Show();
         }
@@ -74,6 +74,7 @@ namespace POS.Admin
                 /*licencia invalida*/
                 this.Close();
             }
+            VigLb.Caption += CurrentLicence.Vigencia.ToString("dd-MM-yyyy");
             int intento = 1;
             DialogResult dr;
             Logon l = new Logon();
@@ -109,21 +110,21 @@ namespace POS.Admin
             var getLicence = new GetLicence(config.DATABASE_PATH);
             if (File.Exists(config.DATABASE_PATH))
             {
-                CURRENT_LICENCE = getLicence.ObtenerLicencia();
+                CurrentLicence = getLicence.ObtenerLicencia();
             }
             else
             {
                 /*la base de datos no existe localmente*/
                 getLicence.ShowDialog();
-                CURRENT_LICENCE = getLicence.remoteLicence;
-                if (!string.IsNullOrEmpty(CURRENT_LICENCE.ID))
+                CurrentLicence = getLicence.remoteLicence;
+                if (!string.IsNullOrEmpty(CurrentLicence.ID))
                 {
                     /*la licencia es valida*/
                     /*creo la base de datos local*/
                     File.WriteAllBytes(config.DATABASE_PATH, Properties.Resources.nanoPOS_admin);
                     /*insero la licencia en la base de datos*/
                     var lite = new SQLiteAux(new Config().DATABASE_PATH);
-                    string cmd = $"INSERT INTO licencias (ID,Nombre,Vigencia) VALUES ('{CURRENT_LICENCE.ID}','{CURRENT_LICENCE.Nombre}','{CURRENT_LICENCE.Vigencia.ToString("yyyy-MM-dd HH:mm")}')";
+                    string cmd = $"INSERT INTO licencias (ID,Nombre,Vigencia) VALUES ('{CurrentLicence.ID}','{CurrentLicence.Nombre}','{CurrentLicence.Vigencia.ToString("yyyy-MM-dd HH:mm")}')";
                     lite.ExecuteScalar(cmd);
                 }
                 else
@@ -133,14 +134,14 @@ namespace POS.Admin
             }
             
             /*hay una licencia valida*/
-            if (string.IsNullOrEmpty(CURRENT_LICENCE.ID))
+            if (string.IsNullOrEmpty(CurrentLicence.ID))
             {
                 /*licencia inexistente*/
                 isValid = false;
                 MessageBox.Show("Licencia invalida, contacte al proveedor");
 
             }
-            else if(CURRENT_LICENCE.Vigencia > DateTime.Today)
+            else if(CurrentLicence.Vigencia > DateTime.Today)
             {
                 /*licencia valida*/
                 isValid = true;
@@ -156,49 +157,49 @@ namespace POS.Admin
 
         private void NewAlmBt_ItemClick(object sender, ItemClickEventArgs e)
         {
-            Almacen almacen = new Almacen();
+            Almacen almacen = new Almacen(CurrentLicence);
             almacen.MdiParent = this;
             almacen.Show();
         }
 
         private void BuscarAlmBt_ItemClick(object sender, ItemClickEventArgs e)
         {
-            AlmacenBuscar almacenBuscar = new AlmacenBuscar();
+            AlmacenBuscar almacenBuscar = new AlmacenBuscar(CurrentLicence);
             almacenBuscar.MdiParent = this;
             almacenBuscar.Show();
         }
 
         private void BuscarProductoBt_ItemClick(object sender, ItemClickEventArgs e)
         {
-            ProductoBuscar nuevaVentana = new ProductoBuscar();
+            ProductoBuscar nuevaVentana = new ProductoBuscar(CurrentLicence);
             nuevaVentana.MdiParent = this;
             nuevaVentana.Show();
         }
 
         private void NewProductBt_ItemClick(object sender, ItemClickEventArgs e)
         {
-            Producto nuevaVentana = new Producto();
+            Producto nuevaVentana = new Producto(CurrentLicence);
             nuevaVentana.MdiParent = this;
             nuevaVentana.Show();
         }
 
         private void barButtonItem4_ItemClick(object sender, ItemClickEventArgs e)
         {
-            Movimiento nuevaVentana = new Movimiento();
+            Movimiento nuevaVentana = new Movimiento(CurrentLicence,User);
             nuevaVentana.MdiParent = this;
             nuevaVentana.Show();
         }
 
         private void BuscarMovBt_ItemClick(object sender, ItemClickEventArgs e)
         {
-            MovimientoBuscar nuevaVentana = new MovimientoBuscar();
+            MovimientoBuscar nuevaVentana = new MovimientoBuscar(CurrentLicence);
             nuevaVentana.MdiParent = this;
             nuevaVentana.Show();
         }
 
         private void barButtonItem5_ItemClick(object sender, ItemClickEventArgs e)
         {
-            Existencias nuevaVentana = new Existencias();
+            Existencias nuevaVentana = new Existencias(CurrentLicence);
             nuevaVentana.MdiParent = this;
             nuevaVentana.Show();
         }

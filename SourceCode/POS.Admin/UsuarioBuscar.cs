@@ -9,21 +9,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using POS.Aux;
+using POS.Aux.Models;
 
 namespace POS.Admin
 {
     public partial class UsuarioBuscar : DevExpress.XtraBars.Ribbon.RibbonForm
     {
         AccessConeccion ac;
-        public UsuarioBuscar()
+        Licencia CurrentLicence;
+        public UsuarioBuscar(Licencia CurrentLicence)
         {
             InitializeComponent();
             ac = new AccessConeccion();
+            this.CurrentLicence = CurrentLicence;
         }
 
         private void BuscarBt_ItemClick(object sender, ItemClickEventArgs e)
         {
-            string cmd = "SELECT ID, Nombre, Usuario, Pwd, FK_Tienda, Activa FROM users;";
+            string cmd = $"SELECT ID, Nombre, Usuario, Pwd, FK_Tienda, Activa FROM users WHERE FK_Licencia='{CurrentLicence.ID}';";
             UsuariosGrid.DataSource = ac.ObtieneTabla(cmd);
         }
 
@@ -32,7 +35,7 @@ namespace POS.Admin
             DataRow r = gridView1.GetDataRow(e.RowHandle);
             string TiendaID = r["ID"].ToString();
 
-            Usuario t = new Usuario(TiendaID);
+            Usuario t = new Usuario(CurrentLicence, TiendaID);
             t.MdiParent = this.MdiParent;
             t.Show();
         }

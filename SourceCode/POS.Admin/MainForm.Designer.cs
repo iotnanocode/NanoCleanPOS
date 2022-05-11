@@ -44,6 +44,7 @@ namespace POS.Admin
             this.BuscarMovBt = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -56,7 +57,7 @@ namespace POS.Admin
             this.ribbonPage4 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
-            this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
+            this.VigLb = new DevExpress.XtraBars.BarStaticItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             this.SuspendLayout();
             // 
@@ -79,9 +80,10 @@ namespace POS.Admin
             this.BuscarMovBt,
             this.barButtonItem4,
             this.barButtonItem3,
-            this.barButtonItem5});
+            this.barButtonItem5,
+            this.VigLb});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 15;
+            this.ribbon.MaxItemId = 16;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -190,6 +192,14 @@ namespace POS.Admin
             this.barButtonItem3.Id = 13;
             this.barButtonItem3.Name = "barButtonItem3";
             // 
+            // barButtonItem5
+            // 
+            this.barButtonItem5.Caption = "Buscar Existencias";
+            this.barButtonItem5.Id = 14;
+            this.barButtonItem5.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem5.ImageOptions.SvgImage")));
+            this.barButtonItem5.Name = "barButtonItem5";
+            this.barButtonItem5.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem5_ItemClick);
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -271,18 +281,17 @@ namespace POS.Admin
             // 
             this.ribbonStatusBar.ItemLinks.Add(this.StatusLabel);
             this.ribbonStatusBar.ItemLinks.Add(this.UserRLabel);
+            this.ribbonStatusBar.ItemLinks.Add(this.VigLb);
             this.ribbonStatusBar.Location = new System.Drawing.Point(0, 425);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbon;
             this.ribbonStatusBar.Size = new System.Drawing.Size(692, 24);
             // 
-            // barButtonItem5
+            // VigLb
             // 
-            this.barButtonItem5.Caption = "Buscar Existencias";
-            this.barButtonItem5.Id = 14;
-            this.barButtonItem5.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem5.ImageOptions.SvgImage")));
-            this.barButtonItem5.Name = "barButtonItem5";
-            this.barButtonItem5.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem5_ItemClick);
+            this.VigLb.Caption = "Vigencia: ";
+            this.VigLb.Id = 15;
+            this.VigLb.Name = "VigLb";
             // 
             // MainForm
             // 
@@ -333,5 +342,6 @@ namespace POS.Admin
         private DevExpress.XtraBars.BarButtonItem barButtonItem4;
         private DevExpress.XtraBars.BarButtonItem barButtonItem3;
         private DevExpress.XtraBars.BarButtonItem barButtonItem5;
+        private DevExpress.XtraBars.BarStaticItem VigLb;
     }
 }

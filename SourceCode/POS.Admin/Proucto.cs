@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using POS.Aux;
+using POS.Aux.Models;
+
 namespace POS.Admin
 {
     public partial class Producto : DevExpress.XtraBars.Ribbon.RibbonForm
@@ -17,12 +19,14 @@ namespace POS.Admin
         FuncionesComunes fc;
         string IDProducto;
         string CATEGORIA_ENVASES = "6bdd11c0-cb26-11ec-9d64-0242ac120002";
-        public Producto(string IDProducto="")
+        Licencia CurrentLicence;
+        public Producto(Licencia CurrentLicence,string IDProducto="")
         {
             InitializeComponent();
             this.IDProducto = IDProducto;
             ac = new AccessConeccion();
             fc = new FuncionesComunes();
+            this.CurrentLicence = CurrentLicence;
             Inicializa();
         }
 
@@ -34,7 +38,7 @@ namespace POS.Admin
             cmd = "SELECT ID, Descripcion, Activa FROM unidades;";
             UnidadLu.Properties.DataSource = ac.ObtieneTabla(cmd);
 
-            cmd = $"SELECT ID, UPC, Descripcion FROM nanoclean.productos WHERE FK_Categoria ='{CATEGORIA_ENVASES}';";
+            cmd = $"SELECT ID, UPC, Descripcion FROM productos WHERE FK_Licencia='{CurrentLicence.ID}' AND FK_Categoria ='{CATEGORIA_ENVASES}';";
             EnvaseLu.Properties.DataSource = ac.ObtieneTabla(cmd);
         }
 
@@ -59,8 +63,8 @@ namespace POS.Admin
             {
                 /*es una nueva tienda*/
                 string newID = Guid.NewGuid().ToString();
-                string cmd = $"INSERT INTO productos (ID,FK_Categoria,UPC,Descripcion,Presentacion,Costo,Precio,FK_Envase,FK_Unidad) "+
-                             $" VALUES('{newID}','{CatLu.EditValue}','{UpcTx.Text}','{DescTx.Text}','{PresentacionTx.Text}','{CostoTx.EditValue}','{PrecioTx.EditValue}','{EnvaseLu.EditValue}','{UnidadLu.EditValue}');";
+                string cmd = $"INSERT INTO productos (ID,FK_Licencia,FK_Categoria,UPC,Descripcion,Presentacion,Costo,Precio,FK_Envase,FK_Unidad) "+
+                             $" VALUES('{newID}','{CurrentLicence.ID}','{CatLu.EditValue}','{UpcTx.Text}','{DescTx.Text}','{PresentacionTx.Text}','{CostoTx.EditValue}','{PrecioTx.EditValue}','{EnvaseLu.EditValue}','{UnidadLu.EditValue}');";
                 ac.ExecutaEscalar(cmd);
                 IDProducto = newID;
                 MessageBox.Show("Almacenado");

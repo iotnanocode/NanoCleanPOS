@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using POS.Aux;
+using POS.Aux.Models;
 
 namespace POS.Admin
 {
@@ -16,11 +17,12 @@ namespace POS.Admin
     public partial class AlmacenBuscar : DevExpress.XtraBars.Ribbon.RibbonForm
     {
         AccessConeccion ac;
-
-        public AlmacenBuscar()
+        Licencia CurrentLicence;
+        public AlmacenBuscar(Licencia CurrentLicence)
         {
             InitializeComponent();
             ac = new AccessConeccion();
+            this.CurrentLicence = CurrentLicence;
             Inicializa();
         }
 
@@ -32,7 +34,7 @@ namespace POS.Admin
 
         private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
         {
-            string cmd = "SELECT ID, FK_Categoria, Descripcion, Ubicacion, Activa FROM almacenes;";
+            string cmd = $"SELECT ID, FK_Categoria, Descripcion, Ubicacion, Activa FROM almacenes WHERE FK_Licencia ='{CurrentLicence.ID}';";
             AlmacenesGrid.DataSource = ac.ObtieneTabla(cmd);
         }
 
@@ -41,7 +43,7 @@ namespace POS.Admin
             DataRow r = gridView1.GetDataRow(e.RowHandle);
             string AlmacenID = r["ID"].ToString();
 
-            Almacen t = new Almacen(AlmacenID);
+            Almacen t = new Almacen(CurrentLicence,AlmacenID);
             t.MdiParent = this.MdiParent;
             t.Show();
         }

@@ -26,7 +26,7 @@ namespace POS.Aux
         {
             string cmd = "SELECT Nombre " +
                         "FROM users " +
-                        "WHERE CAST(AES_DECRYPT(pwd,UNHEX('F3229A0B371ED2D9441B830D21A390C3')) AS CHAR) = '" + PwdText.Text + "'  AND Usuario='" + UserText.Text + "'";
+                        "WHERE Pwd = '" + PwdText.Text + "'  AND Usuario='" + UserText.Text + "'";
             Permisos = ac.ObtieneTabla(cmd);
             User = UserText.Text;
             DataTableReader dtr = Permisos.CreateDataReader();

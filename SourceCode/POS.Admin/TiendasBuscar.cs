@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using POS.Aux;
+using POS.Aux.Models;
 
 namespace POS.Admin
 {
@@ -16,15 +17,17 @@ namespace POS.Admin
     {
         AccessConeccion ac;
         DataTable TiendasDt;
-        public TiendasBuscar()
+        Licencia CurrentLicence;
+        public TiendasBuscar(Licencia CurrentLicence)
         {
             InitializeComponent();
             ac = new AccessConeccion();
+            this.CurrentLicence = CurrentLicence;
         }
 
         private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
         {
-            string cmd = "SELECT ID, Nombre, Activa FROM tiendas;";
+            string cmd = $"SELECT ID, Nombre, Activa FROM tiendas WHERE FK_Licencia='{CurrentLicence.ID}';";
             TiendasDt=ac.ObtieneTabla(cmd);
             TiendasGrid.DataSource = TiendasDt;
         }
@@ -34,7 +37,7 @@ namespace POS.Admin
             DataRow r = gridView1.GetDataRow(e.RowHandle);
             string TiendaID = r["ID"].ToString();
 
-            Tienda t = new Tienda(TiendaID);
+            Tienda t = new Tienda(CurrentLicence, TiendaID);
             t.MdiParent = this.MdiParent;
             t.Show();
         }

@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using POS.Aux;
+using POS.Aux.Models;
+
 namespace POS.Admin
 {
     public partial class Usuario : DevExpress.XtraBars.Ribbon.RibbonForm
@@ -16,18 +18,20 @@ namespace POS.Admin
         AccessConeccion ac;
         FuncionesComunes fc;
         string IDUser;
-        public Usuario(string IDUser="")
+        Licencia CurrentLicence;
+        public Usuario(Licencia CurrentLicence,string IDUser="")
         {
             InitializeComponent();
             this.IDUser = IDUser;
             ac = new AccessConeccion();
             fc = new FuncionesComunes();
+            this.CurrentLicence = CurrentLicence;
             Inicializa();
         }
 
         private void Inicializa()
         {
-            string cmd = "SELECT ID, Nombre FROM tiendas WHERE Activa=1;";
+            string cmd = $"SELECT ID, Nombre FROM tiendas WHERE FK_Licencia='{CurrentLicence.ID}' AND Activa=1;";
             TiendaLu.Properties.DataSource = ac.ObtieneTabla(cmd);
         }
 
@@ -36,7 +40,7 @@ namespace POS.Admin
             if (!string.IsNullOrEmpty(IDUser))
             {
                 /*editar usuario*/
-                string cmd = $"SELECT ID, Nombre, Usuario, Pwd, FK_Tienda, Activa FROM users WHERE ID='{IDUser}';";
+                string cmd = $"SELECT ID, Nombre, Usuario, Pwd, FK_Tienda, Activa FROM users WHERE FK_Licencia='{CurrentLicence.ID}' AND  ID='{IDUser}';";
                 var row = ac.GetFirstRow(cmd);
 
                 NombreTx.Text = row["Nombre"].ToString();
@@ -65,8 +69,8 @@ namespace POS.Admin
             {
                 /*es una nueva tienda*/
                 string newID = Guid.NewGuid().ToString();
-                string cmd = $"INSERT INTO users (ID, Nombre, Usuario,Pwd,FK_Tienda,Activa) " +
-                              $"VALUES('{newID}','{NombreTx.Text}','{UsuarioTx.Text}',AES_ENCRYPT('{PwdTx.Text} ',UNHEX('F3229A0B371ED2D9441B830D21A390C3')),'{TiendaLu.EditValue}',1);";               
+                string cmd = $"INSERT INTO users (ID,FK_Licencia, Nombre, Usuario,Pwd,FK_Tienda,Activa) " +
+                              $"VALUES('{newID}','{CurrentLicence.ID}','{NombreTx.Text}','{UsuarioTx.Text}','{PwdTx.Text}','{TiendaLu.EditValue}',1);";               
                 ac.ExecutaEscalar(cmd);
                 IDUser = newID;
                 MessageBox.Show("Almacenado");
@@ -78,7 +82,7 @@ namespace POS.Admin
                 if (string.IsNullOrEmpty(PwdTx.Text))
                 {
                     /*cambia el password*/
-                    cmd= $"UPDATE users SET Nombre = '{NombreTx.Text}',Usuario = '{UsuarioTx.Text}',Pwd = AES_ENCRYPT('{PwdTx.Text} ',UNHEX('F3229A0B371ED2D9441B830D21A390C3')),FK_Tienda = '{TiendaLu.EditValue}' WHERE ID = '{IDUser}';                ; ";
+                    cmd= $"UPDATE users SET Nombre = '{NombreTx.Text}',Usuario = '{UsuarioTx.Text}',Pwd = '{PwdTx.Text}',FK_Tienda = '{TiendaLu.EditValue}' WHERE ID = '{IDUser}';                ; ";
                 } 
                 else
                 {

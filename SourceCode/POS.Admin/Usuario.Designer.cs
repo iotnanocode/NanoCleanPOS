@@ -207,6 +207,7 @@ namespace POS.Admin
             this.PwdTx.Name = "PwdTx";
             this.PwdTx.Properties.AccessibleName = "Contraseña";
             this.PwdTx.Properties.PasswordChar = '*';
+            this.PwdTx.Properties.UseSystemPasswordChar = true;
             this.PwdTx.Size = new System.Drawing.Size(201, 20);
             this.PwdTx.TabIndex = 0;
             // 

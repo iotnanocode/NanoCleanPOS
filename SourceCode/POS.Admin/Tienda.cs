@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using POS.Aux;
+using POS.Aux.Models;
 
 namespace POS.Admin
 {
@@ -17,12 +18,14 @@ namespace POS.Admin
         AccessConeccion ac;
         FuncionesComunes fc;
         string IDTienda;
-        public Tienda(string IDTienda="")
+        Licencia CurrentLicence;
+        public Tienda(Licencia CurrentLicence,string IDTienda="")
         {
             InitializeComponent();
             this.IDTienda = IDTienda;
             ac = new AccessConeccion();
             fc = new FuncionesComunes();
+            this.CurrentLicence = CurrentLicence;
         }
 
         private void Tienda_Load(object sender, EventArgs e)
@@ -40,7 +43,7 @@ namespace POS.Admin
 
         private void CargarTienda()
         {
-            string cmd = $"SELECT ID, Nombre, Activa FROM tiendas where id='{IDTienda}'";
+            string cmd = $"SELECT ID, Nombre, Activa FROM tiendas where FK_Licencia='{CurrentLicence.ID}' AND id='{IDTienda}'";
             var row = ac.GetFirstRow(cmd);
             NombreTx.Text = row["Nombre"].ToString();
         }
@@ -59,7 +62,7 @@ namespace POS.Admin
             {
                 /*es una nueva tienda*/
                 string newID = Guid.NewGuid().ToString();
-                string cmd = $"INSERT INTO tiendas (ID,Nombre,Activa)VALUES('{newID}','{NombreTx.Text}','{1}');";
+                string cmd = $"INSERT INTO tiendas (ID,FK_Licencia,Nombre,Activa)VALUES('{newID}','{CurrentLicence.ID}','{NombreTx.Text}','{1}');";
                 ac.ExecutaEscalar(cmd);
                 IDTienda = newID;
                 MessageBox.Show("Almacenado");
