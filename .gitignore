@@ -4,3 +4,7 @@ SourceCode/POS.Admin/bin/
 SourceCode/POS.Aux/bin/
 
 SourceCode/POS/bin/
+
+SourceCode/POS.Admin/obj/Debug/
+
+SourceCode/POS.Aux/obj/Debug/
