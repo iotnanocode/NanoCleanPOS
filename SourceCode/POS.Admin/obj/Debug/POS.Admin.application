@@ -14,14 +14,14 @@
     <framework targetVersion="4.7.2" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="POS.Admin.exe.manifest" size="60025">
+    <dependentAssembly dependencyType="install" codebase="POS.Admin.exe.manifest" size="68307">
       <assemblyIdentity name="POS.Admin.exe" version="22.05.04.01" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>xdeSxVegWzJNOkUHzBmi9/XN5BqpAlqi3R3Xf+WLTOA=</dsig:DigestValue>
+        <dsig:DigestValue>fR4GrtT0DTpPxSCYBjT6ID0M9TNP+EodbZVtkkT+Sy0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

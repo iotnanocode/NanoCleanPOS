@@ -11,6 +11,9 @@ using System.Windows.Forms;
 using POS.Aux;
 using System.Diagnostics;
 using System.Reflection;
+using POS.Aux.Models;
+using System.IO;
+using System.Data.SQLite;
 
 namespace POS.Admin
 {
@@ -18,6 +21,7 @@ namespace POS.Admin
     {
         AccessConeccion ac;
         FuncionesComunes fc;
+        Licencia CURRENT_LICENCE;
         string User;
         public MainForm()
         {
@@ -65,6 +69,11 @@ namespace POS.Admin
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            if(!ValidarLicencia())
+            {
+                /*licencia invalida*/
+                this.Close();
+            }
             int intento = 1;
             DialogResult dr;
             Logon l = new Logon();
@@ -91,6 +100,58 @@ namespace POS.Admin
                 this.Close();
             }
             l.Dispose();
+        }
+
+        private bool ValidarLicencia()
+        {
+            bool isValid = false;
+            var config = new Config();
+            var getLicence = new GetLicence(config.DATABASE_PATH);
+            if (File.Exists(config.DATABASE_PATH))
+            {
+                CURRENT_LICENCE = getLicence.ObtenerLicencia();
+            }
+            else
+            {
+                /*la base de datos no existe localmente*/
+                getLicence.ShowDialog();
+                CURRENT_LICENCE = getLicence.remoteLicence;
+                if (!string.IsNullOrEmpty(CURRENT_LICENCE.ID))
+                {
+                    /*la licencia es valida*/
+                    /*creo la base de datos local*/
+                    File.WriteAllBytes(config.DATABASE_PATH, Properties.Resources.nanoPOS_admin);
+                    /*insero la licencia en la base de datos*/
+                    var lite = new SQLiteAux(new Config().DATABASE_PATH);
+                    string cmd = $"INSERT INTO licencias (ID,Nombre,Vigencia) VALUES ('{CURRENT_LICENCE.ID}','{CURRENT_LICENCE.Nombre}','{CURRENT_LICENCE.Vigencia.ToString("yyyy-MM-dd HH:mm")}')";
+                    lite.ExecuteScalar(cmd);
+                }
+                else
+                {
+                    /*do nothing*/
+                }
+            }
+            
+            /*hay una licencia valida*/
+            if (string.IsNullOrEmpty(CURRENT_LICENCE.ID))
+            {
+                /*licencia inexistente*/
+                isValid = false;
+                MessageBox.Show("Licencia invalida, contacte al proveedor");
+
+            }
+            else if(CURRENT_LICENCE.Vigencia > DateTime.Today)
+            {
+                /*licencia valida*/
+                isValid = true;
+            }
+            else
+            {
+                /*licencia vencida*/
+                MessageBox.Show("La licencia se encuentra vencida, contacta al distribuidor");
+                isValid = false;
+            }
+            return isValid;
         }
 
         private void NewAlmBt_ItemClick(object sender, ItemClickEventArgs e)
