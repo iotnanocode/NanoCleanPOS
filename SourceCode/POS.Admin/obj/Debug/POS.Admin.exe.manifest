@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="POS.Admin.exe" version="22.05.11.01" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="POS.Admin.exe" version="22.05.11.02" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="POS.Admin" version="22.5.11.1" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="POS.Admin" version="22.5.11.2" language="neutral" processorArchitecture="msil" />
     <commandLine file="POS.Admin.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -942,26 +942,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="POS.Admin.exe" size="122336">
-      <assemblyIdentity name="POS.Admin" version="22.5.11.1" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="POS.Admin.exe" size="124384">
+      <assemblyIdentity name="POS.Admin" version="22.5.11.2" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>r/mtLJ6RaGcJAIP1Y8LAVzyAGEecqhpcrd48QR4UZqI=</dsig:DigestValue>
+        <dsig:DigestValue>nL8Pm9/q5raPILcEQ5f/ARC0bjZ466bjh2nEYGmw0uk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="POS.Aux.dll" size="81920">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="POS.Aux.dll" size="82432">
       <assemblyIdentity name="POS.Aux" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>I6gufNkRFoXIT708bd4LRRXjOKRxH5LwpWjGdiDV+is=</dsig:DigestValue>
+        <dsig:DigestValue>8TT5C/JIcbcuLODhXhZ361ja5C0rWhyD8q8XFBN1xu8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

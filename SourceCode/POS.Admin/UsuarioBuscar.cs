@@ -22,11 +22,18 @@ namespace POS.Admin
             InitializeComponent();
             ac = new AccessConeccion();
             this.CurrentLicence = CurrentLicence;
+            Inicializa();
+        }
+
+        private void Inicializa()
+        {
+            string cmd = $"SELECT ID, FK_Licencia, Nombre, Activa FROM tiendas  WHERE FK_Licencia='{CurrentLicence.ID}';";
+            TiendaLu.DataSource = ac.ObtieneTabla(cmd);
         }
 
         private void BuscarBt_ItemClick(object sender, ItemClickEventArgs e)
         {
-            string cmd = $"SELECT ID, Nombre, Usuario, Pwd, FK_Tienda, Activa FROM users WHERE FK_Licencia='{CurrentLicence.ID}';";
+            string cmd = $"SELECT ID, Nombre, Usuario, Pwd, FK_Tienda,isAdmin, Activa FROM users WHERE FK_Licencia='{CurrentLicence.ID}';";
             UsuariosGrid.DataSource = ac.ObtieneTabla(cmd);
         }
 

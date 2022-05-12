@@ -44,7 +44,12 @@ namespace POS.Admin
             this.FK_Tienda = new DevExpress.XtraGrid.Columns.GridColumn();
             this.TiendaLu = new DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit();
             this.repositoryItemSearchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.IDT = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.FK_Licencia = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.NombreT = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ActivaT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Activa = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.isAdmin = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.UsuariosGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -117,7 +122,8 @@ namespace POS.Admin
             this.Usuario,
             this.Pwd,
             this.FK_Tienda,
-            this.Activa});
+            this.Activa,
+            this.isAdmin});
             this.gridView1.GridControl = this.UsuariosGrid;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsView.ShowAutoFilterRow = true;
@@ -173,10 +179,47 @@ namespace POS.Admin
             // 
             // repositoryItemSearchLookUpEdit1View
             // 
+            this.repositoryItemSearchLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.IDT,
+            this.FK_Licencia,
+            this.NombreT,
+            this.ActivaT});
             this.repositoryItemSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
             this.repositoryItemSearchLookUpEdit1View.Name = "repositoryItemSearchLookUpEdit1View";
             this.repositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.repositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            // 
+            // IDT
+            // 
+            this.IDT.Caption = "ID";
+            this.IDT.FieldName = "ID";
+            this.IDT.Name = "IDT";
+            this.IDT.Visible = true;
+            this.IDT.VisibleIndex = 0;
+            // 
+            // FK_Licencia
+            // 
+            this.FK_Licencia.Caption = "FK_Licencia";
+            this.FK_Licencia.FieldName = "FK_Licencia";
+            this.FK_Licencia.Name = "FK_Licencia";
+            this.FK_Licencia.Visible = true;
+            this.FK_Licencia.VisibleIndex = 1;
+            // 
+            // NombreT
+            // 
+            this.NombreT.Caption = "Nombre";
+            this.NombreT.FieldName = "Nombre";
+            this.NombreT.Name = "NombreT";
+            this.NombreT.Visible = true;
+            this.NombreT.VisibleIndex = 2;
+            // 
+            // ActivaT
+            // 
+            this.ActivaT.Caption = "Activa";
+            this.ActivaT.FieldName = "Activa";
+            this.ActivaT.Name = "ActivaT";
+            this.ActivaT.Visible = true;
+            this.ActivaT.VisibleIndex = 3;
             // 
             // Activa
             // 
@@ -185,6 +228,12 @@ namespace POS.Admin
             this.Activa.Name = "Activa";
             this.Activa.Visible = true;
             this.Activa.VisibleIndex = 3;
+            // 
+            // isAdmin
+            // 
+            this.isAdmin.Caption = "Administrador";
+            this.isAdmin.FieldName = "isAdmin";
+            this.isAdmin.Name = "isAdmin";
             // 
             // UsuarioBuscar
             // 
@@ -226,5 +275,10 @@ namespace POS.Admin
         private DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit TiendaLu;
         private DevExpress.XtraGrid.Views.Grid.GridView repositoryItemSearchLookUpEdit1View;
         private DevExpress.XtraGrid.Columns.GridColumn Activa;
+        private DevExpress.XtraGrid.Columns.GridColumn isAdmin;
+        private DevExpress.XtraGrid.Columns.GridColumn IDT;
+        private DevExpress.XtraGrid.Columns.GridColumn FK_Licencia;
+        private DevExpress.XtraGrid.Columns.GridColumn NombreT;
+        private DevExpress.XtraGrid.Columns.GridColumn ActivaT;
     }
 }

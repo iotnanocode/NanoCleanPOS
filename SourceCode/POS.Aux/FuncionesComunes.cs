@@ -418,5 +418,13 @@ namespace POS.Aux
             }
             return foto;
         }
+        public bool GetBoolValue(object ValueFromBD)
+        {
+            return ValueFromBD.ToString() == "1";
+        }
+        public int GetBoolValue(DevExpress.XtraEditors.ToggleSwitch toggleSwitch)
+        {
+            return (bool)toggleSwitch.EditValue ? 1 : 0;
+        }
     }
 }

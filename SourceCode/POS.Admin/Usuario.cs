@@ -40,12 +40,13 @@ namespace POS.Admin
             if (!string.IsNullOrEmpty(IDUser))
             {
                 /*editar usuario*/
-                string cmd = $"SELECT ID, Nombre, Usuario, Pwd, FK_Tienda, Activa FROM users WHERE FK_Licencia='{CurrentLicence.ID}' AND  ID='{IDUser}';";
+                string cmd = $"SELECT ID, Nombre, Usuario, Pwd, FK_Tienda, isAdmin,Activa FROM users WHERE FK_Licencia='{CurrentLicence.ID}' AND  ID='{IDUser}';";
                 var row = ac.GetFirstRow(cmd);
 
                 NombreTx.Text = row["Nombre"].ToString();
                 UsuarioTx.Text = row["Usuario"].ToString();
                 TiendaLu.EditValue = row["FK_Tienda"].ToString();
+                isAdminTs.EditValue = fc.GetBoolValue(row["isAdmin"]);
             }
             else
             {
@@ -69,8 +70,8 @@ namespace POS.Admin
             {
                 /*es una nueva tienda*/
                 string newID = Guid.NewGuid().ToString();
-                string cmd = $"INSERT INTO users (ID,FK_Licencia, Nombre, Usuario,Pwd,FK_Tienda,Activa) " +
-                              $"VALUES('{newID}','{CurrentLicence.ID}','{NombreTx.Text}','{UsuarioTx.Text}','{PwdTx.Text}','{TiendaLu.EditValue}',1);";               
+                string cmd = $"INSERT INTO users (ID,FK_Licencia, Nombre, Usuario,Pwd,FK_Tienda,isAdmin,Activa) " +
+                              $"VALUES('{newID}','{CurrentLicence.ID}','{NombreTx.Text}','{UsuarioTx.Text}','{PwdTx.Text}','{TiendaLu.EditValue}','{fc.GetBoolValue(isAdminTs)}',1);";               
                 ac.ExecutaEscalar(cmd);
                 IDUser = newID;
                 MessageBox.Show("Almacenado");
@@ -82,12 +83,12 @@ namespace POS.Admin
                 if (string.IsNullOrEmpty(PwdTx.Text))
                 {
                     /*cambia el password*/
-                    cmd= $"UPDATE users SET Nombre = '{NombreTx.Text}',Usuario = '{UsuarioTx.Text}',Pwd = '{PwdTx.Text}',FK_Tienda = '{TiendaLu.EditValue}' WHERE ID = '{IDUser}';                ; ";
+                    cmd= $"UPDATE users SET Nombre = '{NombreTx.Text}',Usuario = '{UsuarioTx.Text}',Pwd = '{PwdTx.Text}',FK_Tienda = '{TiendaLu.EditValue}',isAdmin='{fc.GetBoolValue(isAdminTs)}' WHERE ID = '{IDUser}';                ; ";
                 } 
                 else
                 {
                     /*no cambia el password*/
-                    cmd= $"UPDATE users SET Nombre = '{NombreTx.Text}',Usuario = '{UsuarioTx.Text}',FK_Tienda = '{TiendaLu.EditValue}' WHERE ID = '{IDUser}';                ; ";
+                    cmd= $"UPDATE users SET Nombre = '{NombreTx.Text}',Usuario = '{UsuarioTx.Text}',FK_Tienda = '{TiendaLu.EditValue}',isAdmin='{fc.GetBoolValue(isAdminTs)}'  WHERE ID = '{IDUser}';                ; ";
                 }
                 ac.ExecutaEscalar(cmd);
                 MessageBox.Show("Almacenado");

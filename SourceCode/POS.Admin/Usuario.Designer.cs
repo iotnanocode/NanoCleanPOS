@@ -46,6 +46,9 @@ namespace POS.Admin
             this.PwdTx = new DevExpress.XtraEditors.TextEdit();
             this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
             this.TiendaLu = new DevExpress.XtraEditors.LookUpEdit();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.groupControl5 = new DevExpress.XtraEditors.GroupControl();
+            this.isAdminTs = new DevExpress.XtraEditors.ToggleSwitch();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -61,6 +64,10 @@ namespace POS.Admin
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).BeginInit();
             this.groupControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TiendaLu.Properties)).BeginInit();
+            this.tableLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl5)).BeginInit();
+            this.groupControl5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.isAdminTs.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbon
@@ -121,7 +128,7 @@ namespace POS.Admin
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.groupControl4, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 158);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -215,9 +222,9 @@ namespace POS.Admin
             // 
             this.groupControl4.Controls.Add(this.TiendaLu);
             this.groupControl4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupControl4.Location = new System.Drawing.Point(3, 60);
+            this.groupControl4.Location = new System.Drawing.Point(3, 3);
             this.groupControl4.Name = "groupControl4";
-            this.groupControl4.Size = new System.Drawing.Size(629, 51);
+            this.groupControl4.Size = new System.Drawing.Size(540, 45);
             this.groupControl4.TabIndex = 1;
             this.groupControl4.Text = "Tienda";
             // 
@@ -234,8 +241,44 @@ namespace POS.Admin
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Nombre", "Nombre")});
             this.TiendaLu.Properties.DisplayMember = "Nombre";
             this.TiendaLu.Properties.ValueMember = "ID";
-            this.TiendaLu.Size = new System.Drawing.Size(625, 20);
+            this.TiendaLu.Size = new System.Drawing.Size(536, 20);
             this.TiendaLu.TabIndex = 0;
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 83F));
+            this.tableLayoutPanel3.Controls.Add(this.groupControl4, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.groupControl5, 1, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 60);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(629, 51);
+            this.tableLayoutPanel3.TabIndex = 2;
+            // 
+            // groupControl5
+            // 
+            this.groupControl5.Controls.Add(this.isAdminTs);
+            this.groupControl5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupControl5.Location = new System.Drawing.Point(549, 3);
+            this.groupControl5.Name = "groupControl5";
+            this.groupControl5.Size = new System.Drawing.Size(77, 45);
+            this.groupControl5.TabIndex = 2;
+            this.groupControl5.Text = "Es Admin";
+            // 
+            // isAdminTs
+            // 
+            this.isAdminTs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.isAdminTs.Location = new System.Drawing.Point(2, 23);
+            this.isAdminTs.MenuManager = this.ribbon;
+            this.isAdminTs.Name = "isAdminTs";
+            this.isAdminTs.Properties.OffText = "No";
+            this.isAdminTs.Properties.OnText = "Si";
+            this.isAdminTs.Size = new System.Drawing.Size(73, 20);
+            this.isAdminTs.TabIndex = 0;
             // 
             // Usuario
             // 
@@ -266,6 +309,10 @@ namespace POS.Admin
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).EndInit();
             this.groupControl4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.TiendaLu.Properties)).EndInit();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl5)).EndInit();
+            this.groupControl5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.isAdminTs.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -289,5 +336,8 @@ namespace POS.Admin
         private DevExpress.XtraEditors.TextEdit PwdTx;
         private DevExpress.XtraEditors.GroupControl groupControl4;
         private DevExpress.XtraEditors.LookUpEdit TiendaLu;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private DevExpress.XtraEditors.GroupControl groupControl5;
+        private DevExpress.XtraEditors.ToggleSwitch isAdminTs;
     }
 }
