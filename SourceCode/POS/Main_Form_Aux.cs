@@ -63,27 +63,7 @@ namespace POS
             DownLoadData();
         }
 
-        private void DownLoadData()
-        {
-            SyncServices sc = new SyncServices();
-            BackgroundWorker bgw = new BackgroundWorker();
-            bgw.WorkerReportsProgress = true;
-            bgw.DoWork += new DoWorkEventHandler(DownLoad_DoWork);
-            bgw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorker1_RunWorkerCompleted);
-            bgw.ProgressChanged += new ProgressChangedEventHandler(backgroundWorker1_ProgressChanged);
-            waitForm = new WaitWindow();
-            waitForm.SetBarSize(BarLocation.Main, MainRequirementsDt.Rows.Count);
-            SetSecondaryBarSize(CURRENT_REQUERIMENT);/*firstsize*/
-            waitForm.Show();
-            bgw.RunWorkerAsync(parameters);
-        }
-        private void DownLoad_DoWork(object sender, DoWorkEventArgs e)
-        {
-            DownParameters parameters = (DownParameters)e.Argument;
-            BackgroundWorker worker = (BackgroundWorker)sender;
-            SaveFile(parameters, worker);
-            Process.Start(parameters.FileName);
-        }
+        
 
         private bool ValidarLicencia()
         {

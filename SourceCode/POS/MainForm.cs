@@ -21,12 +21,14 @@ namespace POS
         AccessConeccion ac;
         FuncionesComunes fc;
         Licencia CurrentLicence;
+        SQLiteAux LocalConnection;
         string User;
         public MainForm()
         {
             InitializeComponent();
             ac = new AccessConeccion();
             fc = new FuncionesComunes();
+            LocalConnection = new SQLiteAux(new Config().DATABASE_PATH);
             StatusLabel.Caption = this.StatusLabel.Caption + " " + ((object)FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion).ToString();
             Inicializa();
         }

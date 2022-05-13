@@ -30,7 +30,6 @@ namespace POS
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
@@ -41,13 +40,15 @@ namespace POS
             this.UserRLabel = new DevExpress.XtraBars.BarStaticItem();
             this.VigLb = new DevExpress.XtraBars.BarStaticItem();
             this.barStaticItem5 = new DevExpress.XtraBars.BarStaticItem();
-            this.barEditItem1 = new DevExpress.XtraBars.BarEditItem();
+            this.LoadingBar = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemProgressBar1 = new DevExpress.XtraEditors.Repository.RepositoryItemProgressBar();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.barStaticItem4 = new DevExpress.XtraBars.BarStaticItem();
+            this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.repositoryItemProgressBar2 = new DevExpress.XtraEditors.Repository.RepositoryItemProgressBar();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -63,6 +64,8 @@ namespace POS
             this.UPCTx = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar2)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
@@ -89,13 +92,15 @@ namespace POS
             this.UserRLabel,
             this.StatusLabel,
             this.VigLb,
-            this.barEditItem1,
+            this.LoadingBar,
             this.barStaticItem4,
             this.barStaticItem5});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 9;
+            this.barManager1.MaxItemId = 11;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemProgressBar1});
+            this.repositoryItemProgressBar1,
+            this.repositoryItemTextEdit1,
+            this.repositoryItemProgressBar2});
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar2
@@ -142,7 +147,7 @@ namespace POS
             new DevExpress.XtraBars.LinkPersistInfo(this.UserRLabel),
             new DevExpress.XtraBars.LinkPersistInfo(this.VigLb),
             new DevExpress.XtraBars.LinkPersistInfo(this.barStaticItem5),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barEditItem1)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.LoadingBar)});
             this.bar3.OptionsBar.AllowQuickCustomization = false;
             this.bar3.OptionsBar.DrawDragBorder = false;
             this.bar3.OptionsBar.UseWholeRow = true;
@@ -173,14 +178,14 @@ namespace POS
             this.barStaticItem5.Id = 8;
             this.barStaticItem5.Name = "barStaticItem5";
             // 
-            // barEditItem1
+            // LoadingBar
             // 
-            this.barEditItem1.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
-            this.barEditItem1.Caption = "Sincronizacion";
-            this.barEditItem1.Edit = this.repositoryItemProgressBar1;
-            this.barEditItem1.EditWidth = 200;
-            this.barEditItem1.Id = 6;
-            this.barEditItem1.Name = "barEditItem1";
+            this.LoadingBar.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            this.LoadingBar.Caption = "Sincronizacion";
+            this.LoadingBar.Edit = this.repositoryItemProgressBar1;
+            this.LoadingBar.EditWidth = 200;
+            this.LoadingBar.Id = 6;
+            this.LoadingBar.Name = "LoadingBar";
             // 
             // repositoryItemProgressBar1
             // 
@@ -224,6 +229,15 @@ namespace POS
             this.barStaticItem4.Id = 7;
             this.barStaticItem4.Name = "barStaticItem4";
             // 
+            // repositoryItemTextEdit1
+            // 
+            this.repositoryItemTextEdit1.AutoHeight = false;
+            this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
+            // 
+            // repositoryItemProgressBar2
+            // 
+            this.repositoryItemProgressBar2.Name = "repositoryItemProgressBar2";
+            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
@@ -242,7 +256,6 @@ namespace POS
             // pictureBox1
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(600, 3);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(307, 452);
@@ -394,6 +407,8 @@ namespace POS
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar2)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
@@ -435,8 +450,10 @@ namespace POS
         private DevExpress.XtraBars.BarStaticItem StatusLabel;
         private DevExpress.XtraBars.BarStaticItem VigLb;
         private DevExpress.XtraBars.BarStaticItem barStaticItem5;
-        private DevExpress.XtraBars.BarEditItem barEditItem1;
+        private DevExpress.XtraBars.BarEditItem LoadingBar;
         private DevExpress.XtraEditors.Repository.RepositoryItemProgressBar repositoryItemProgressBar1;
         private DevExpress.XtraBars.BarStaticItem barStaticItem4;
+        private DevExpress.XtraEditors.Repository.RepositoryItemProgressBar repositoryItemProgressBar2;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
     }
 }
