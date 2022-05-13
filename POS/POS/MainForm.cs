@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraBars;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,11 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace nanocleanPOS
+namespace POS
 {
-    public partial class Form1 : Form
+    public partial class MainForm : DevExpress.XtraBars.Ribbon.RibbonForm
     {
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }

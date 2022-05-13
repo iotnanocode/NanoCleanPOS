@@ -1,5 +1,5 @@
 ﻿
-namespace nanocleanPOS
+namespace POS
 {
     partial class Form1
     {
