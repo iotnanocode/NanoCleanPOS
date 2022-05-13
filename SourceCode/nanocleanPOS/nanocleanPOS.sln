@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POS.Admin", "..\POS.Admin\P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POS.Aux", "..\POS.Aux\POS.Aux.csproj", "{A5FD487C-F424-4C69-95C2-1E6585A3189D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POS", "..\..\POS\POS\POS.csproj", "{51AB0D90-AC90-4F9A-864D-CA536966346F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POS", "..\POS\POS.csproj", "{51AB0D90-AC90-4F9A-864D-CA536966346F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
