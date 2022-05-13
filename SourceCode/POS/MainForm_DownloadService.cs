@@ -16,7 +16,7 @@ namespace POS
         private void DownLoadData()
         {
             LoadingBar.EditValue = 0;
-
+            LoadingBar.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
             BackgroundWorker downloadWorker = new BackgroundWorker();
             downloadWorker.DoWork += DownLoad_DoWork;
             downloadWorker.WorkerReportsProgress = true;
@@ -41,12 +41,12 @@ namespace POS
             cmd = "DELETE * FROM  almacenes";
             /*borro almacenes locales*/
             LocalConnection.ExecuteScalar(cmd);
-            cmd = "INSERT INTO almacenes (SELECT ID, FK_Categoria, Descripcion, Ubicacion, FK_Licencia, Activa) VALUES ";
+            cmd = "INSERT INTO almacenes (ID, FK_Categoria, Descripcion, Ubicacion, FK_Licencia, Activa) VALUES ";
             foreach (DataRow item in dtAlmacenes.Rows)
             {
                 cmd+=$"('{item["ID"]}','{item["FK_Categoria"]}','{item["Descripcion"]}','{item["Ubicacion"]}','{item["FK_Licencia"]}','{item["Activa"]}'),";
             }
-            cmd.Remove(cmd.LastIndexOf(","));
+            cmd=cmd.Remove(cmd.Length-1);
             LocalConnection.ExecuteScalar(cmd);
             downloadWorker.ReportProgress(REPORT_PROGRESS_VALUE);
         }
@@ -61,6 +61,8 @@ namespace POS
             UPCTx.Focus();
             LoadingBar.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.Cursor = Cursors.Default;
+            string cmd = $"UPDATE config SET FK_Licencia='{CurrentLicence.ID}',LastSync='{DateTime.Now.ToString("yyyy-MM-dd HH:mm")}'";
+            LocalConnection.ExecuteScalar(cmd);
             MessageBox.Show("Sincronizacion completa");
         }
     }

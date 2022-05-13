@@ -39,7 +39,7 @@ namespace POS
             this.StatusLabel = new DevExpress.XtraBars.BarStaticItem();
             this.UserRLabel = new DevExpress.XtraBars.BarStaticItem();
             this.VigLb = new DevExpress.XtraBars.BarStaticItem();
-            this.barStaticItem5 = new DevExpress.XtraBars.BarStaticItem();
+            this.LSynctLb = new DevExpress.XtraBars.BarStaticItem();
             this.LoadingBar = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemProgressBar1 = new DevExpress.XtraEditors.Repository.RepositoryItemProgressBar();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
@@ -94,7 +94,7 @@ namespace POS
             this.VigLb,
             this.LoadingBar,
             this.barStaticItem4,
-            this.barStaticItem5});
+            this.LSynctLb});
             this.barManager1.MainMenu = this.bar2;
             this.barManager1.MaxItemId = 11;
             this.barManager1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
@@ -146,7 +146,7 @@ namespace POS
             new DevExpress.XtraBars.LinkPersistInfo(this.StatusLabel),
             new DevExpress.XtraBars.LinkPersistInfo(this.UserRLabel),
             new DevExpress.XtraBars.LinkPersistInfo(this.VigLb),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barStaticItem5),
+            new DevExpress.XtraBars.LinkPersistInfo(this.LSynctLb),
             new DevExpress.XtraBars.LinkPersistInfo(this.LoadingBar)});
             this.bar3.OptionsBar.AllowQuickCustomization = false;
             this.bar3.OptionsBar.DrawDragBorder = false;
@@ -171,12 +171,12 @@ namespace POS
             this.VigLb.Id = 5;
             this.VigLb.Name = "VigLb";
             // 
-            // barStaticItem5
+            // LSynctLb
             // 
-            this.barStaticItem5.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
-            this.barStaticItem5.Caption = "Ultima Sincronizacion: ";
-            this.barStaticItem5.Id = 8;
-            this.barStaticItem5.Name = "barStaticItem5";
+            this.LSynctLb.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            this.LSynctLb.Caption = "Ultima Sincronizacion: ";
+            this.LSynctLb.Id = 8;
+            this.LSynctLb.Name = "LSynctLb";
             // 
             // LoadingBar
             // 
@@ -449,7 +449,7 @@ namespace POS
         private DevExpress.XtraBars.BarStaticItem UserRLabel;
         private DevExpress.XtraBars.BarStaticItem StatusLabel;
         private DevExpress.XtraBars.BarStaticItem VigLb;
-        private DevExpress.XtraBars.BarStaticItem barStaticItem5;
+        private DevExpress.XtraBars.BarStaticItem LSynctLb;
         private DevExpress.XtraBars.BarEditItem LoadingBar;
         private DevExpress.XtraEditors.Repository.RepositoryItemProgressBar repositoryItemProgressBar1;
         private DevExpress.XtraBars.BarStaticItem barStaticItem4;

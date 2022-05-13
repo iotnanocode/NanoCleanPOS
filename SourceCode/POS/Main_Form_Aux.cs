@@ -61,9 +61,15 @@ namespace POS
             }
             l.Dispose();
             DownLoadData();
+            GetLastSync();
         }
 
-        
+        private void GetLastSync()
+        {
+            string cmd = "SELECT LastSync FROM config";
+            var row = LocalConnection.GetFirstRow(cmd);
+            LSynctLb.Caption += row["LastSync"].ToString();
+        }
 
         private bool ValidarLicencia()
         {
