@@ -82,5 +82,31 @@ namespace POS.Aux
             }
             return hasResult;
         }
+        public bool InsertaDataTable(DataTable dtToInsert,string TableName)
+        {
+            string cmd = $"INSERT INTO {TableName} (";
+            foreach (DataColumn col in dtToInsert.Columns)
+            {
+                cmd += $"{col.ColumnName},";
+            }
+            /*remuevo la ultima coma*/
+            cmd = cmd.Remove(cmd.Length - 1);
+            cmd += ") ";
+            /*genero el insert values*/
+            cmd += $"VALUES (";
+            foreach (DataRow item in dtToInsert.Rows)
+            {
+                foreach (DataColumn col in dtToInsert.Columns)
+                {
+                    cmd += $"'{item[col.ColumnName]}',";
+                }
+                /*remuevo la ultima coma*/
+                cmd = cmd.Remove(cmd.Length - 1);
+                cmd += "),(";
+            }
+            /*remuevo la ultima coma*/
+            cmd = cmd.Remove(cmd.Length - 2);
+            return ExecuteScalar(cmd);
+        }
     }
 }

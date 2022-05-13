@@ -12,7 +12,7 @@ namespace POS
     public partial class MainForm : DevExpress.XtraEditors.XtraForm
     {
         int TABLES_TO_DOWNLOAD = 1;
-        int REPORT_PROGRESS_VALUE = 1;
+        int DOWNLOAD_REPORT_PROGRESS_VALUE = 11;
         private void DownLoadData()
         {
             LoadingBar.EditValue = 0;
@@ -34,25 +34,59 @@ namespace POS
 
         private void DescargarDatos(BackgroundWorker downloadWorker)
         {
-            /*Descargar almacenes*/
-            string cmd = "SELECT ID, FK_Categoria, Descripcion, Ubicacion, FK_Licencia, Activa " +
-                         $"FROM almacenes WHERE FK_Licencia = '{CurrentLicence.ID}' OR FK_Licencia is null; ";
-            var dtAlmacenes = ac.ObtieneTabla(cmd);
-            cmd = "DELETE * FROM  almacenes";
-            /*borro almacenes locales*/
-            LocalConnection.ExecuteScalar(cmd);
-            cmd = "INSERT INTO almacenes (ID, FK_Categoria, Descripcion, Ubicacion, FK_Licencia, Activa) VALUES ";
-            foreach (DataRow item in dtAlmacenes.Rows)
+            Descargar("almacenes",true);
+            downloadWorker.ReportProgress(DOWNLOAD_REPORT_PROGRESS_VALUE);
+            Descargar("almacenes_clasificacion");
+            downloadWorker.ReportProgress(DOWNLOAD_REPORT_PROGRESS_VALUE);
+            Descargar("categorias_productos");
+            downloadWorker.ReportProgress(DOWNLOAD_REPORT_PROGRESS_VALUE);
+            Descargar("clientes",true);
+            downloadWorker.ReportProgress(DOWNLOAD_REPORT_PROGRESS_VALUE);
+            Descargarlicencia();
+            downloadWorker.ReportProgress(DOWNLOAD_REPORT_PROGRESS_VALUE);
+            Descargar("productos",true);
+            downloadWorker.ReportProgress(DOWNLOAD_REPORT_PROGRESS_VALUE);
+            Descargar("tiendas",true);
+            downloadWorker.ReportProgress(DOWNLOAD_REPORT_PROGRESS_VALUE);
+            Descargar("unidades");
+            downloadWorker.ReportProgress(DOWNLOAD_REPORT_PROGRESS_VALUE);
+            Descargar("users",true);
+            downloadWorker.ReportProgress(DOWNLOAD_REPORT_PROGRESS_VALUE);
+        }
+
+        private void Descargar(string Tabla,bool WithLicence=false)
+        {
+            /*Descargar */
+            string cmd = "SELECT * " +
+                         $"FROM {Tabla} ";
+            if (WithLicence)
             {
-                cmd+=$"('{item["ID"]}','{item["FK_Categoria"]}','{item["Descripcion"]}','{item["Ubicacion"]}','{item["FK_Licencia"]}','{item["Activa"]}'),";
+                cmd+=$"WHERE FK_Licencia='{CurrentLicence.ID}' OR FK_Licencia IS NULL;";
             }
-            cmd=cmd.Remove(cmd.Length-1);
+            else
+            {
+                /*do nothing*/
+            }
+                         
+            var dtRemota = ac.ObtieneTabla(cmd);
+            cmd = $"DELETE * FROM  {Tabla}";
+            /*borro locales*/
             LocalConnection.ExecuteScalar(cmd);
-            downloadWorker.ReportProgress(REPORT_PROGRESS_VALUE);
+            /*genero comando insert*/
+            LocalConnection.InsertaDataTable(dtRemota, Tabla);
+        }
+        private void Descargarlicencia()
+        {
+            /*Descargar */
+            string cmd = $"SELECT Vigencia FROM licencias WHERE ID='{CurrentLicence.ID}' ";
+            var value = (DateTime)ac.ExecutaEscalar(cmd);
+            cmd = $"UPDATE licencias SET Vigencia = '{value.ToString("yyyy-MM-dd HH:mm")}'";
+            /*actualizo locales*/
+            LocalConnection.ExecuteScalar(cmd);
         }
         private void downLoad_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            LoadingBar.EditValue = ((int)LoadingBar.EditValue) + REPORT_PROGRESS_VALUE;
+            LoadingBar.EditValue = ((int)LoadingBar.EditValue) + DOWNLOAD_REPORT_PROGRESS_VALUE;
         }
         private void downLoad_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
