@@ -22,7 +22,7 @@ namespace POS
         FuncionesComunes fc;
         Licencia CurrentLicence;
         SQLiteAux LocalConnection;
-        string User;
+        User user;
         public MainForm()
         {
             InitializeComponent();

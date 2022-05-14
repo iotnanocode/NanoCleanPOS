@@ -98,6 +98,7 @@ namespace POS
             string cmd = $"UPDATE config SET FK_Licencia='{CurrentLicence.ID}',LastSync='{DateTime.Now.ToString("yyyy-MM-dd HH:mm")}'";
             LocalConnection.ExecuteScalar(cmd);
             MessageBox.Show("Sincronizacion completa");
+            GetLastSync();
         }
     }
 }

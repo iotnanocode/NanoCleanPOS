@@ -36,11 +36,11 @@ namespace POS
             VigLb.Caption += CurrentLicence.Vigencia.ToString("dd-MM-yyyy");
             int intento = 1;
             DialogResult dr;
-            Logon l = new Logon();
+            Logon l = new Logon(new Config().DATABASE_PATH,true);
         OtroIntento: dr = l.ShowDialog();
             if (dr == DialogResult.OK)
             {
-                if (l.Nombre == "")
+                if (l.ReadedUser == null)
                 {
                     MessageBox.Show("Usuario o contraseña incorrectos", "Cuenta errornea", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     if (intento >= 3)
@@ -50,8 +50,8 @@ namespace POS
                 }
                 else
                 {
-                    UserRLabel.Caption = "Bienvenido: " + l.Nombre;
-                    User = l.User;
+                    user = l.ReadedUser;
+                    UserRLabel.Caption = "Bienvenido: " + user.Nombre;
                 }
             }
             else
@@ -63,7 +63,6 @@ namespace POS
             DownLoadData();
             GetLastSync();
         }
-
         private void GetLastSync()
         {
             string cmd = "SELECT LastSync FROM config";
