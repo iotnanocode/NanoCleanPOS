@@ -16,7 +16,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <PublishUrl>C:\Users\jalva\Mi unidad\NanoCode\SolucionesEmpaquetadas\POSAdmin\</PublishUrl>
+    <PublishUrl>G:\Mi unidad\NanoCode\SolucionesEmpaquetadas\POSAdmin\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -27,9 +27,9 @@
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <UpdateUrl>http://www.nanocode.mx/POSAdmin/</UpdateUrl>
-    <MinimumRequiredVersion>22.05.11.03</MinimumRequiredVersion>
-    <ApplicationRevision>3</ApplicationRevision>
-    <ApplicationVersion>22.05.11.03</ApplicationVersion>
+    <MinimumRequiredVersion>22.05.11.04</MinimumRequiredVersion>
+    <ApplicationRevision>4</ApplicationRevision>
+    <ApplicationVersion>22.05.11.04</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
