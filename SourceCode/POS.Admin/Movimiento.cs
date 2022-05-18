@@ -21,8 +21,8 @@ namespace POS.Admin
         DataTable AlmacenesDt;
         string CLASIFICACION_ENTRADAS = "420c22d6-cb27-11ec-9d64-0242ac120002";
         Licencia CurrentLicence;
-        string USER_ID;
-        public Movimiento(Licencia CurrentLicence,string USER_ID)
+        User USER_ID;
+        public Movimiento(Licencia CurrentLicence,User USER_ID)
         {
             InitializeComponent();
             ac = new AccessConeccion();
@@ -96,7 +96,7 @@ namespace POS.Admin
 
         private void MoverInventario(string IDProducto, float Cantidad, string IDUnidad , float Costo, string IDAlmacenOrigen, string IDAlmacenDestino, DateTime Fecha)
         {
-            string cmd = $"CALL sp_MoverInventario('{USER_ID}','{IDProducto}', '{Cantidad}','{IDUnidad}', '{Costo}', '{IDAlmacenOrigen}','{IDAlmacenDestino}', '{Fecha.ToString("yyyy-MM-dd HH:mm")}'); ";
+            string cmd = $"CALL sp_MoverInventario('{USER_ID.ID}','{IDProducto}', '{Cantidad}','{IDUnidad}', '{Costo}', '{IDAlmacenOrigen}','{IDAlmacenDestino}', '{Fecha.ToString("yyyy-MM-dd HH:mm")}'); ";
             ac.ExecutaEscalar(cmd);
         }
     }

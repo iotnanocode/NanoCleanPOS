@@ -22,7 +22,7 @@ namespace POS.Admin
         AccessConeccion ac;
         FuncionesComunes fc;
         Licencia CurrentLicence;
-        string User;
+        User CurrentUser;
         public MainForm()
         {
             InitializeComponent();
@@ -81,7 +81,7 @@ namespace POS.Admin
             OtroIntento: dr = l.ShowDialog();
             if (dr == DialogResult.OK)
             {
-                if (l.Nombre == "")
+                if (l.ReadedUser == null)
                 {
                     MessageBox.Show("Usuario o contraseña incorrectos", "Cuenta errornea", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     if (intento >= 3)
@@ -91,8 +91,8 @@ namespace POS.Admin
                 }
                 else
                 {
-                    UserRLabel.Caption = "Bienvenido: " + l.Nombre;
-                    User = l.User;
+                    UserRLabel.Caption = "Bienvenido: " + l.ReadedUser.Nombre;
+                    CurrentUser = l.ReadedUser;
                 }
             }
             else
@@ -185,7 +185,7 @@ namespace POS.Admin
 
         private void barButtonItem4_ItemClick(object sender, ItemClickEventArgs e)
         {
-            Movimiento nuevaVentana = new Movimiento(CurrentLicence,User);
+            Movimiento nuevaVentana = new Movimiento(CurrentLicence,CurrentUser);
             nuevaVentana.MdiParent = this;
             nuevaVentana.Show();
         }
