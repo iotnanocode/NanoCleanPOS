@@ -11,5 +11,6 @@ namespace POS.Aux.Models
         public string ID { get; set; } = "";
         public string Nombre { get; set; } = "";
         public DateTime Vigencia { get; set; }
+        public string RFC { get; set; }
     }
 }

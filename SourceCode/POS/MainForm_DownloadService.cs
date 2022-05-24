@@ -78,9 +78,10 @@ namespace POS
         private void Descargarlicencia()
         {
             /*Descargar */
-            string cmd = $"SELECT Vigencia FROM licencias WHERE ID='{CurrentLicence.ID}' ";
-            var value = (DateTime)ac.ExecutaEscalar(cmd);
-            cmd = $"UPDATE licencias SET Vigencia = '{value.ToString("yyyy-MM-dd HH:mm")}'";
+            string cmd = $"SELECT Nombre,Vigencia,RFC FROM licencias WHERE ID='{CurrentLicence.ID}' ";
+            var licRow = ac.GetFirstRow(cmd);
+            var value = (DateTime)licRow["Vigencia"];
+            cmd = $"UPDATE licencias SET Vigencia = '{value.ToString("yyyy-MM-dd HH:mm")}',Nombre='{licRow["Nombre"]}',RFC='{licRow["RFC"]}'";
             /*actualizo locales*/
             LocalConnection.ExecuteScalar(cmd);
         }
