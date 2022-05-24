@@ -40,7 +40,7 @@ namespace POS.Admin
             cmd = "SELECT ID, Descripcion, Activa FROM unidades;";
             UnidadLu.Properties.DataSource = ac.ObtieneTabla(cmd);
 
-            cmd = $"SELECT ID, FK_Categoria, Descripcion, Ubicacion, Activa FROM almacenes WHERE Activa=1 AND FK_Licencia='{CurrentLicence.ID}';";
+            cmd = $"SELECT ID, FK_Categoria, Descripcion, Ubicacion, Activa FROM almacenes WHERE Activa=1 AND (FK_Licencia IS NULL OR FK_Licencia='{CurrentLicence.ID}');";
             AlmacenesDt = ac.ObtieneTabla(cmd);
 
             OrigenLu.Properties.DataSource = AlmacenesDt;
