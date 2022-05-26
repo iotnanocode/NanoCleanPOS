@@ -1,8 +1,10 @@
-﻿using System;
+﻿using POS.Aux.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,11 +21,23 @@ namespace POS.Aux
             DATA_BASE_PATH = DB_PATH;
             STR_CONN = $"DATA Source={DATA_BASE_PATH};";
         }
-        public DataTable GetDataTable(string str_COMMAND)
+        public DataTable GetDataTable(string str_COMMAND,List<CommandParameter> Parametros=null)
         {
             DataTable returnDt = null;
             SQLiteConnection liteConnection = new SQLiteConnection(STR_CONN);
             SQLiteCommand liteCommand = new SQLiteCommand(str_COMMAND, liteConnection);
+            if (Parametros!=null)
+            {
+                /*el comando que se manda incluye parametros*/
+                foreach (var item in Parametros)
+                {
+                    liteCommand.Parameters.AddWithValue(item.ParameterName, item.ParameterValue);
+                }
+            }
+            else
+            {
+                /*do nothign*/
+            }
             try
             {
                 liteConnection.Open();
@@ -49,9 +63,9 @@ namespace POS.Aux
             }
             return returnDt;
         }
-        public DataRow GetFirstRow(string str_COMMAND)
+        public DataRow GetFirstRow(string str_COMMAND,List<CommandParameter> Parametros=null)
         {
-            var result = GetDataTable(str_COMMAND);
+            var result = GetDataTable(str_COMMAND,Parametros);
             DataRow returRow = null;
             if (result != null)
             {
@@ -64,11 +78,25 @@ namespace POS.Aux
             }
             return returRow;
         }
-        public bool ExecuteScalar(string str_COMMAND)
+        public bool ExecuteScalar(string str_COMMAND,List<CommandParameter> Parametros=null)
         {
             bool hasResult = false;
             SQLiteConnection liteConnection = new SQLiteConnection(STR_CONN);
             SQLiteCommand liteCommand = new SQLiteCommand(str_COMMAND, liteConnection);
+
+            if (Parametros != null)
+            {
+                /*el comando que se manda incluye parametros*/
+                foreach (var item in Parametros)
+                {
+                    liteCommand.Parameters.AddWithValue(item.ParameterName, item.ParameterValue);
+                }
+            }
+            else
+            {
+                /*do nothign*/
+            }
+
             try
             {
                 liteConnection.Open();

@@ -33,8 +33,8 @@ namespace POS
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
+            this.ConfigBt = new DevExpress.XtraBars.BarButtonItem();
+            this.ReportsBt = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.StatusLabel = new DevExpress.XtraBars.BarStaticItem();
             this.UserRLabel = new DevExpress.XtraBars.BarStaticItem();
@@ -50,29 +50,39 @@ namespace POS
             this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.repositoryItemProgressBar2 = new DevExpress.XtraEditors.Repository.RepositoryItemProgressBar();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.PicturePic = new System.Windows.Forms.PictureBox();
+            this.MainLayout = new System.Windows.Forms.TableLayoutPanel();
             this.SalesGrid = new DevExpress.XtraGrid.GridControl();
             this.MainView = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.PagosLayout = new System.Windows.Forms.TableLayoutPanel();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
+            this.SearchLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.UPCTx = new DevExpress.XtraEditors.TextEdit();
+            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.SearchTx = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar2)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PicturePic)).BeginInit();
+            this.MainLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SalesGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainView)).BeginInit();
-            this.tableLayoutPanel3.SuspendLayout();
+            this.PagosLayout.SuspendLayout();
+            this.SearchLayout.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
+            this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UPCTx.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
+            this.groupControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SearchTx.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // barManager1
@@ -87,8 +97,8 @@ namespace POS
             this.barManager1.Form = this;
             this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.barButtonItem1,
-            this.barButtonItem2,
-            this.barButtonItem3,
+            this.ConfigBt,
+            this.ReportsBt,
             this.UserRLabel,
             this.StatusLabel,
             this.VigLb,
@@ -111,8 +121,9 @@ namespace POS
             this.bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.bar2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem2),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem3)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.ConfigBt),
+            new DevExpress.XtraBars.LinkPersistInfo(this.ReportsBt)});
+            this.bar2.OptionsBar.AllowQuickCustomization = false;
             this.bar2.OptionsBar.MultiLine = true;
             this.bar2.OptionsBar.UseWholeRow = true;
             this.bar2.Text = "Main menu";
@@ -123,17 +134,18 @@ namespace POS
             this.barButtonItem1.Id = 0;
             this.barButtonItem1.Name = "barButtonItem1";
             // 
-            // barButtonItem2
+            // ConfigBt
             // 
-            this.barButtonItem2.Caption = "Configurar";
-            this.barButtonItem2.Id = 1;
-            this.barButtonItem2.Name = "barButtonItem2";
+            this.ConfigBt.Caption = "Configurar";
+            this.ConfigBt.Id = 1;
+            this.ConfigBt.Name = "ConfigBt";
+            this.ConfigBt.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.ConfigBt_ItemClick);
             // 
-            // barButtonItem3
+            // ReportsBt
             // 
-            this.barButtonItem3.Caption = "Reportes";
-            this.barButtonItem3.Id = 2;
-            this.barButtonItem3.Name = "barButtonItem3";
+            this.ReportsBt.Caption = "Reportes";
+            this.ReportsBt.Id = 2;
+            this.ReportsBt.Name = "ReportsBt";
             // 
             // bar3
             // 
@@ -243,8 +255,8 @@ namespace POS
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65.61086F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.38914F));
-            this.tableLayoutPanel1.Controls.Add(this.pictureBox1, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.PicturePic, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.MainLayout, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 20);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -253,32 +265,32 @@ namespace POS
             this.tableLayoutPanel1.Size = new System.Drawing.Size(910, 458);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
-            // pictureBox1
+            // PicturePic
             // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(600, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(307, 452);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.PicturePic.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PicturePic.Location = new System.Drawing.Point(600, 3);
+            this.PicturePic.Name = "PicturePic";
+            this.PicturePic.Size = new System.Drawing.Size(307, 452);
+            this.PicturePic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PicturePic.TabIndex = 0;
+            this.PicturePic.TabStop = false;
             // 
-            // tableLayoutPanel2
+            // MainLayout
             // 
-            this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.SalesGrid, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.UPCTx, 0, 1);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 3;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(591, 452);
-            this.tableLayoutPanel2.TabIndex = 1;
+            this.MainLayout.ColumnCount = 1;
+            this.MainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.MainLayout.Controls.Add(this.SalesGrid, 0, 0);
+            this.MainLayout.Controls.Add(this.PagosLayout, 0, 2);
+            this.MainLayout.Controls.Add(this.SearchLayout, 0, 1);
+            this.MainLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainLayout.Location = new System.Drawing.Point(3, 3);
+            this.MainLayout.Name = "MainLayout";
+            this.MainLayout.RowCount = 3;
+            this.MainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.MainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.MainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.MainLayout.Size = new System.Drawing.Size(591, 452);
+            this.MainLayout.TabIndex = 1;
             // 
             // SalesGrid
             // 
@@ -286,7 +298,7 @@ namespace POS
             this.SalesGrid.Location = new System.Drawing.Point(3, 3);
             this.SalesGrid.MainView = this.MainView;
             this.SalesGrid.Name = "SalesGrid";
-            this.SalesGrid.Size = new System.Drawing.Size(585, 339);
+            this.SalesGrid.Size = new System.Drawing.Size(585, 307);
             this.SalesGrid.TabIndex = 0;
             this.SalesGrid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.MainView});
@@ -338,29 +350,29 @@ namespace POS
             this.gridColumn3.VisibleIndex = 0;
             this.gridColumn3.Width = 71;
             // 
-            // tableLayoutPanel3
+            // PagosLayout
             // 
-            this.tableLayoutPanel3.ColumnCount = 3;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel3.Controls.Add(this.simpleButton2, 2, 0);
-            this.tableLayoutPanel3.Controls.Add(this.simpleButton1, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.simpleButton3, 0, 0);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 368);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(585, 81);
-            this.tableLayoutPanel3.TabIndex = 1;
+            this.PagosLayout.ColumnCount = 3;
+            this.PagosLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.PagosLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.PagosLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.PagosLayout.Controls.Add(this.simpleButton2, 2, 0);
+            this.PagosLayout.Controls.Add(this.simpleButton1, 1, 0);
+            this.PagosLayout.Controls.Add(this.simpleButton3, 0, 0);
+            this.PagosLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PagosLayout.Location = new System.Drawing.Point(3, 376);
+            this.PagosLayout.Name = "PagosLayout";
+            this.PagosLayout.RowCount = 1;
+            this.PagosLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.PagosLayout.Size = new System.Drawing.Size(585, 73);
+            this.PagosLayout.TabIndex = 1;
             // 
             // simpleButton2
             // 
             this.simpleButton2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.simpleButton2.Location = new System.Drawing.Point(393, 3);
             this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(189, 75);
+            this.simpleButton2.Size = new System.Drawing.Size(189, 67);
             this.simpleButton2.TabIndex = 4;
             this.simpleButton2.Text = "Otro";
             // 
@@ -369,7 +381,7 @@ namespace POS
             this.simpleButton1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.simpleButton1.Location = new System.Drawing.Point(198, 3);
             this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(189, 75);
+            this.simpleButton1.Size = new System.Drawing.Size(189, 67);
             this.simpleButton1.TabIndex = 3;
             this.simpleButton1.Text = "Efectivo";
             // 
@@ -378,17 +390,62 @@ namespace POS
             this.simpleButton3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.simpleButton3.Location = new System.Drawing.Point(3, 3);
             this.simpleButton3.Name = "simpleButton3";
-            this.simpleButton3.Size = new System.Drawing.Size(189, 75);
+            this.simpleButton3.Size = new System.Drawing.Size(189, 67);
             this.simpleButton3.TabIndex = 5;
             this.simpleButton3.Text = "Cancelar";
+            // 
+            // SearchLayout
+            // 
+            this.SearchLayout.ColumnCount = 2;
+            this.SearchLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 160F));
+            this.SearchLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.SearchLayout.Controls.Add(this.groupControl1, 0, 0);
+            this.SearchLayout.Controls.Add(this.groupControl2, 1, 0);
+            this.SearchLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SearchLayout.Location = new System.Drawing.Point(3, 316);
+            this.SearchLayout.Name = "SearchLayout";
+            this.SearchLayout.RowCount = 1;
+            this.SearchLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.SearchLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.SearchLayout.Size = new System.Drawing.Size(585, 54);
+            this.SearchLayout.TabIndex = 3;
+            // 
+            // groupControl1
+            // 
+            this.groupControl1.Controls.Add(this.UPCTx);
+            this.groupControl1.Location = new System.Drawing.Point(3, 3);
+            this.groupControl1.Name = "groupControl1";
+            this.groupControl1.Size = new System.Drawing.Size(154, 48);
+            this.groupControl1.TabIndex = 0;
+            this.groupControl1.Text = "Codigo de Barras";
             // 
             // UPCTx
             // 
             this.UPCTx.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.UPCTx.Location = new System.Drawing.Point(3, 348);
+            this.UPCTx.Location = new System.Drawing.Point(2, 23);
+            this.UPCTx.MenuManager = this.barManager1;
             this.UPCTx.Name = "UPCTx";
-            this.UPCTx.Size = new System.Drawing.Size(585, 20);
-            this.UPCTx.TabIndex = 2;
+            this.UPCTx.Size = new System.Drawing.Size(150, 20);
+            this.UPCTx.TabIndex = 0;
+            // 
+            // groupControl2
+            // 
+            this.groupControl2.Controls.Add(this.SearchTx);
+            this.groupControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupControl2.Location = new System.Drawing.Point(163, 3);
+            this.groupControl2.Name = "groupControl2";
+            this.groupControl2.Size = new System.Drawing.Size(419, 48);
+            this.groupControl2.TabIndex = 1;
+            this.groupControl2.Text = "Buscar";
+            // 
+            // SearchTx
+            // 
+            this.SearchTx.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SearchTx.Location = new System.Drawing.Point(2, 23);
+            this.SearchTx.MenuManager = this.barManager1;
+            this.SearchTx.Name = "SearchTx";
+            this.SearchTx.Size = new System.Drawing.Size(415, 20);
+            this.SearchTx.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -410,12 +467,18 @@ namespace POS
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar2)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.tableLayoutPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PicturePic)).EndInit();
+            this.MainLayout.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SalesGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainView)).EndInit();
-            this.tableLayoutPanel3.ResumeLayout(false);
+            this.PagosLayout.ResumeLayout(false);
+            this.SearchLayout.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
+            this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.UPCTx.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
+            this.groupControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.SearchTx.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -431,21 +494,20 @@ namespace POS
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.PictureBox PicturePic;
+        private System.Windows.Forms.TableLayoutPanel MainLayout;
         private DevExpress.XtraGrid.GridControl SalesGrid;
         private DevExpress.XtraGrid.Views.Grid.GridView MainView;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.TableLayoutPanel PagosLayout;
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraEditors.SimpleButton simpleButton3;
-        private DevExpress.XtraEditors.TextEdit UPCTx;
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem3;
+        private DevExpress.XtraBars.BarButtonItem ConfigBt;
+        private DevExpress.XtraBars.BarButtonItem ReportsBt;
         private DevExpress.XtraBars.BarStaticItem UserRLabel;
         private DevExpress.XtraBars.BarStaticItem StatusLabel;
         private DevExpress.XtraBars.BarStaticItem VigLb;
@@ -455,5 +517,10 @@ namespace POS
         private DevExpress.XtraBars.BarStaticItem barStaticItem4;
         private DevExpress.XtraEditors.Repository.RepositoryItemProgressBar repositoryItemProgressBar2;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
+        private System.Windows.Forms.TableLayoutPanel SearchLayout;
+        private DevExpress.XtraEditors.GroupControl groupControl1;
+        private DevExpress.XtraEditors.TextEdit UPCTx;
+        private DevExpress.XtraEditors.GroupControl groupControl2;
+        private DevExpress.XtraEditors.TextEdit SearchTx;
     }
 }

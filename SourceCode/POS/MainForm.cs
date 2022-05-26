@@ -22,7 +22,8 @@ namespace POS
         FuncionesComunes fc;
         Licencia CurrentLicence;
         SQLiteAux LocalConnection;
-        User user;
+        User CURRENT_USER;
+        bool PERMITE_AGREGAR;
         public MainForm()
         {
             InitializeComponent();
@@ -31,16 +32,18 @@ namespace POS
             LocalConnection = new SQLiteAux(new Config().DATABASE_PATH);
             StatusLabel.Caption = this.StatusLabel.Caption + " " + ((object)FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion).ToString();
             Inicializa();
-        }
-
-        
-
-        
+        }      
 
         private void NewProductScanned(object sender, EventArgs e)
         {
             throw new NotImplementedException();
         }
 
+        private void ConfigBt_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            ConfigForm cf = new ConfigForm(CurrentLicence);
+            cf.ShowDialog();
+            SetVisualConfigs();
+        }
     }
 }

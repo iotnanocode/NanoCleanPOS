@@ -132,3 +132,11 @@ C:\GitRepos\NanoCleanPOS\SourceCode\POS\obj\x64\Debug\POS.csproj.CoreCompileInpu
 C:\GitRepos\NanoCleanPOS\SourceCode\POS\obj\x64\Debug\POS.csproj.CopyComplete
 C:\GitRepos\NanoCleanPOS\SourceCode\POS\obj\x64\Debug\POS.exe
 C:\GitRepos\NanoCleanPOS\SourceCode\POS\obj\x64\Debug\POS.pdb
+C:\GitRepos\NanoCleanPOS\SourceCode\POS\obj\x64\Debug\POS.ConfigForm.resources
+C:\GitRepos\NanoCleanPOS\SourceCode\POS\bin\x64\Debug\DevExpress.Dialogs.v21.2.Core.dll
+C:\GitRepos\NanoCleanPOS\SourceCode\POS\bin\x64\Debug\DevExpress.XtraDialogs.v21.2.dll
+C:\GitRepos\NanoCleanPOS\SourceCode\POS\bin\x64\Debug\DevExpress.XtraDialogs.v21.2.xml
+C:\GitRepos\NanoCleanPOS\SourceCode\POS\bin\x64\Debug\de\DevExpress.Dialogs.v21.2.Core.resources.dll
+C:\GitRepos\NanoCleanPOS\SourceCode\POS\bin\x64\Debug\es\DevExpress.Dialogs.v21.2.Core.resources.dll
+C:\GitRepos\NanoCleanPOS\SourceCode\POS\bin\x64\Debug\ja\DevExpress.Dialogs.v21.2.Core.resources.dll
+C:\GitRepos\NanoCleanPOS\SourceCode\POS\bin\x64\Debug\ru\DevExpress.Dialogs.v21.2.Core.resources.dll

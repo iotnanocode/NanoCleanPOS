@@ -4,6 +4,7 @@ using POS.Aux;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -16,7 +17,10 @@ namespace POS
 {
     public partial class MainForm : DevExpress.XtraEditors.XtraForm
     {
-
+        int CONFIG_ROW_INDEX = 1;
+        int CONFIG_TECLADO_INDEX = 0;
+        int CONFIG_SEARCH_INDEX = 1;
+        int CONFIG_PAGO_COLUMN_INDEX = 2;
         private void Inicializa()
         {
             Button acceptButon = new Button();
@@ -50,8 +54,8 @@ namespace POS
                 }
                 else
                 {
-                    user = l.ReadedUser;
-                    UserRLabel.Caption = "Bienvenido: " + user.Nombre;
+                    CURRENT_USER = l.ReadedUser;
+                    UserRLabel.Caption = "Bienvenido: " + CURRENT_USER.Nombre;
                 }
             }
             else
@@ -60,14 +64,19 @@ namespace POS
                 this.Close();
             }
             l.Dispose();
+            /*ocultar botones de administrador*/
+            ConfigBt.Visibility = CURRENT_USER.isAdmin == 1 ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+            ReportsBt.Visibility = CURRENT_USER.isAdmin == 1 ? DevExpress.XtraBars.BarItemVisibility.Always : DevExpress.XtraBars.BarItemVisibility.Never;
+
             DownLoadData();
             GetLastSync();
+            SetVisualConfigs();
         }
         private void GetLastSync()
         {
             string cmd = "SELECT LastSync FROM config";
             var row = LocalConnection.GetFirstRow(cmd);
-            LSynctLb.Caption += row["LastSync"].ToString();
+            LSynctLb.Caption = $"Ultima Sincronizacion: {row["LastSync"].ToString()}";
         }
 
         private bool ValidarLicencia()
@@ -138,6 +147,70 @@ namespace POS
                 Image indicator = new Bitmap(Properties.Resources.delete);
                 e.Cache.DrawImage(indicator, new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, indicator.Width, indicator.Height));
             };
+        }
+        void SetVisualConfigs()
+        {
+
+            DataRow configRow = null;
+            string cmd = "SELECT ID, FK_Licencia, FK_Tienda, " +
+                                "FK_Almacen, PermiteTeclado, PermiteAgregarProductos, " +
+                                "PermiteOtrosMetodosPago, FondoPantalla, MembreteTicket, LastSync " +
+                                "FROM config;";
+            configRow= LocalConnection.GetFirstRow(cmd);
+            /*Set image*/
+            if (configRow["FondoPantalla"] ==null)
+            {
+                /*no existen configuraciones*/
+                PicturePic.Image = Properties.Resources.nanoBG;
+                /*Escondo las opciones configurables*/
+                MainLayout.RowStyles[CONFIG_ROW_INDEX].Height = 0;
+                PagosLayout.ColumnStyles[CONFIG_PAGO_COLUMN_INDEX].Width = 0;
+            }
+            else
+            {
+                /*llena todo desde la base de datos*/
+                try
+                {
+                    Stream s = new MemoryStream((Byte[])configRow["FondoPantalla"]);
+                    PicturePic.Image=Image.FromStream(s);
+                }
+                catch (Exception) { }
+                /*valida si esta permitido o buscar o usar teclado*/
+                if (configRow["PermiteTeclado"].ToString() == "0" && configRow["PermiteAgregarProductos"].ToString() == "0")
+                {
+                    /*Escondo las opciones configurables*/
+                    MainLayout.RowStyles[CONFIG_ROW_INDEX].Height = 0;
+                }
+                else
+                {
+                    /*almenos una opcion esta habilitada*/
+                    if (configRow["PermiteTeclado"].ToString() == "0")
+                    {
+                        /*no permite usar teclado*/
+                        SearchLayout.ColumnStyles[CONFIG_TECLADO_INDEX].Width = 0;
+                    }
+                    else if (configRow["PermiteAgregarProductos"].ToString() == "0")
+                    {
+                        /*no permite realizar busquedas*/
+                        SearchLayout.ColumnStyles[CONFIG_SEARCH_INDEX].Width = 0;
+                    }
+                    else
+                    {
+                        /*do nothing*/
+                    }
+                }
+                /*valida si estan permitidos otros metodos de pago*/
+                if (configRow["PermiteOtrosMetodosPago"].ToString() == "0")
+                {
+                    /*no permite usar teclado*/
+                    SearchLayout.ColumnStyles[CONFIG_PAGO_COLUMN_INDEX].Width = 0;
+                }
+                else
+                {
+                    /*do nothing*/
+                }
+            }
+            
         }
     }
 }

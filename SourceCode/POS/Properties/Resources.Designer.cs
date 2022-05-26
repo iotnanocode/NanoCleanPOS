@@ -71,12 +71,32 @@ namespace POS.Properties {
         }
         
         /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap nanoBG {
+            get {
+                object obj = ResourceManager.GetObject("nanoBG", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Busca un recurso adaptado de tipo System.Byte[].
         /// </summary>
         internal static byte[] nanoPOS {
             get {
                 object obj = ResourceManager.GetObject("nanoPOS", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap nanoTicket {
+            get {
+                object obj = ResourceManager.GetObject("nanoTicket", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

@@ -250,7 +250,17 @@ namespace POS.Aux
                 throw new FormatException("Formato incorrecto");
             }
         }
-        public void ValidaCombo(DevExpress.XtraEditors.GridLookUpEdit c)
+
+        public void ValidaLookUp(DevExpress.XtraEditors.GridLookUpEdit c)
+        {
+            if (c.EditValue == null)
+            {
+                MessageBox.Show("Error en el campo: " + c.Properties.AccessibleName, "Debe seleccionar un valor del combo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw new FormatException("Formato incorrecto");
+            }
+        }
+
+                public void ValidaCombo(DevExpress.XtraEditors.GridLookUpEdit c)
         {
             if (c.EditValue == null)
             {
@@ -425,6 +435,14 @@ namespace POS.Aux
         public int GetBoolValue(DevExpress.XtraEditors.ToggleSwitch toggleSwitch)
         {
             return (bool)toggleSwitch.EditValue ? 1 : 0;
+        }
+        public int GetBoolValue(DevExpress.XtraEditors.RadioGroup RadioGroup)
+        {
+            return (bool)RadioGroup.EditValue ? 1 : 0;
+        }
+        public bool GetBoolValue(int Value)
+        {
+            return Value == 1;
         }
     }
 }
