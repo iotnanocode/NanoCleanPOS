@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraGrid;
+﻿using DevExpress.XtraEditors.DXErrorProvider;
+using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
 using POS.Aux;
 using System;
@@ -37,7 +38,6 @@ namespace POS
         private void MainForm_Load(object sender, EventArgs e)
         {
             UPCTx.Focus();
-            CustomDrawRowIndicator(SalesGrid, MainView);
             if (!ValidarLicencia())
             {
                 /*licencia invalida*/
@@ -136,23 +136,18 @@ namespace POS
             }
             return isValid;
         }
-
-        public static void CustomDrawRowIndicator(GridControl gridControl, GridView gridView)
+        private void MainView_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
         {
-            gridView.IndicatorWidth = 50;
-            // Handle this event to paint RowIndicator manually
-            gridView.CustomDrawRowIndicator += (s, e) => {
-                if (!e.Info.IsRowIndicator) return;
-                GridView view = s as GridView;
-                e.Handled = true;
+            if (e.Info.IsRowIndicator)
+            {
+                e.Info.ImageIndex = -1;
+                e.Painter.DrawObject(e.Info);
+                Rectangle r = e.Bounds;
 
-                //e.Appearance.BackColor = view.FocusedRowHandle == e.RowHandle ? Color.Chocolate : Color.MediumSpringGreen;
-                e.Appearance.FillRectangle(e.Cache, new Rectangle(e.Bounds.X + 2, e.Bounds.Y + 2, e.Bounds.Width - 4, e.Bounds.Y - 4));
-                if (e.Info.ImageIndex < 0) return;
-                ImageCollection ic = e.Info.ImageCollection as ImageCollection;
                 Image indicator = new Bitmap(Properties.Resources.delete);
-                e.Cache.DrawImage(indicator, new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, indicator.Width, indicator.Height));
-            };
+                e.Graphics.DrawImage(indicator, new Rectangle(e.Bounds.X + 10, e.Bounds.Y + 1, indicator.Width, indicator.Height));
+                e.Handled = true;
+            }
         }
         void SetVisualConfigs()
         {

@@ -329,6 +329,8 @@ namespace POS
             this.MainView.OptionsView.ShowFooter = true;
             this.MainView.OptionsView.ShowGroupPanel = false;
             this.MainView.RowHeight = 30;
+            this.MainView.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.MainView_RowClick);
+            this.MainView.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.MainView_CustomDrawRowIndicator);
             // 
             // gridColumn3
             // 

@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraBars;
+using DevExpress.XtraGrid.Views.Grid;
 using POS.Aux;
 using POS.Aux.Models;
 using POS.Models;
@@ -115,5 +116,35 @@ namespace POS
                 /*do nothing*/
             }
         }
+
+        private void MainView_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
+        {
+            string ID = (sender as GridView).GetFocusedRowCellValue("ID").ToString();
+            Ventas_Detalles deletedItem = null;
+            foreach (var item in VENTA_DETALLE_LIST)
+            {
+                if (item.ID==ID)
+                {
+                    /*esta es la fila a eliminar*/
+                    item.Cantidad--;
+                    if (item.Cantidad==0)
+                    {
+                        /*hay que borrar la fila*/
+                        deletedItem = item;
+                    }
+                    else
+                    {
+                        /*do nothing*/
+                    }
+                }
+            }
+            if (deletedItem != null)
+            {
+                /*hay un item a eliminar*/
+                VENTA_DETALLE_LIST.Remove(deletedItem);
+            }
+            SalesGrid.DataSource = VENTA_DETALLE_LIST.Where(x => x.ID.Length > 0);
+        }
+
     }
 }
