@@ -25,6 +25,12 @@ namespace POS
         {
             Button acceptButon = new Button();
             this.AcceptButton = acceptButon;
+            VENTA_DETALLE_LIST = new List<Models.Ventas_Detalles>();
+            SalesGrid.DataSource = VENTA_DETALLE_LIST;
+            string cmd = "SELECT ID, Descripcion FROM unidades WHERE Activa=1;";
+            UnidadLu.DataSource = LocalConnection.GetDataTable(cmd);
+            FocusTimer.Start();
+
             acceptButon.Click += new EventHandler(NewProductScanned);
         }
 
@@ -176,29 +182,21 @@ namespace POS
                 }
                 catch (Exception) { }
                 /*valida si esta permitido o buscar o usar teclado*/
-                if (configRow["PermiteTeclado"].ToString() == "0" && configRow["PermiteAgregarProductos"].ToString() == "0")
+                if (configRow["PermiteTeclado"].ToString() == "0")
                 {
                     /*Escondo las opciones configurables*/
                     MainLayout.RowStyles[CONFIG_ROW_INDEX].Height = 0;
                 }
+                else if (configRow["PermiteAgregarProductos"].ToString() == "0")
+                {
+                    /*no permite realizar busquedas*/
+                    SearchLayout.ColumnStyles[CONFIG_SEARCH_INDEX].Width = 0;
+                }
                 else
                 {
-                    /*almenos una opcion esta habilitada*/
-                    if (configRow["PermiteTeclado"].ToString() == "0")
-                    {
-                        /*no permite usar teclado*/
-                        SearchLayout.ColumnStyles[CONFIG_TECLADO_INDEX].Width = 0;
-                    }
-                    else if (configRow["PermiteAgregarProductos"].ToString() == "0")
-                    {
-                        /*no permite realizar busquedas*/
-                        SearchLayout.ColumnStyles[CONFIG_SEARCH_INDEX].Width = 0;
-                    }
-                    else
-                    {
-                        /*do nothing*/
-                    }
+                    /*do nothing*/
                 }
+                
                 /*valida si estan permitidos otros metodos de pago*/
                 if (configRow["PermiteOtrosMetodosPago"].ToString() == "0")
                 {

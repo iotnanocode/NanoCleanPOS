@@ -112,7 +112,6 @@ namespace POS
                 ParameterValue=FondoBytes
             });
 
-            File.WriteAllBytes(@"C:\Users\jalva\OneDrive\Desktop\a.jpg", FondoBytes);
             commandParameters.Add(new CommandParameter()
             {
                 ParameterName="@Membrete",
@@ -138,7 +137,7 @@ namespace POS
             if (OFImage.ShowDialog() == DialogResult.OK)
             {
                 FondoPic.Image = Image.FromFile(OFImage.FileName);
-                FondoBytes = File.ReadAllBytes(OFImage.FileName);
+                FondoBytes = File.ReadAllBytes(OFImage.FileName);               
             }
 
         }

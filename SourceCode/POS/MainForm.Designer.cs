@@ -54,9 +54,11 @@ namespace POS
             this.MainLayout = new System.Windows.Forms.TableLayoutPanel();
             this.SalesGrid = new DevExpress.XtraGrid.GridControl();
             this.MainView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.UnidadLu = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.PagosLayout = new System.Windows.Forms.TableLayoutPanel();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
@@ -66,6 +68,7 @@ namespace POS
             this.UPCTx = new DevExpress.XtraEditors.TextEdit();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.SearchTx = new DevExpress.XtraEditors.TextEdit();
+            this.FocusTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemProgressBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
@@ -75,6 +78,7 @@ namespace POS
             this.MainLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SalesGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UnidadLu)).BeginInit();
             this.PagosLayout.SuspendLayout();
             this.SearchLayout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
@@ -298,6 +302,8 @@ namespace POS
             this.SalesGrid.Location = new System.Drawing.Point(3, 3);
             this.SalesGrid.MainView = this.MainView;
             this.SalesGrid.Name = "SalesGrid";
+            this.SalesGrid.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.UnidadLu});
             this.SalesGrid.Size = new System.Drawing.Size(585, 307);
             this.SalesGrid.TabIndex = 0;
             this.SalesGrid.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -306,26 +312,62 @@ namespace POS
             // MainView
             // 
             this.MainView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn3,
+            this.gridColumn4,
             this.gridColumn1,
-            this.gridColumn2,
-            this.gridColumn3});
+            this.gridColumn2});
             this.MainView.FooterPanelHeight = 50;
             this.MainView.GridControl = this.SalesGrid;
             this.MainView.IndicatorWidth = 50;
             this.MainView.Name = "MainView";
+            this.MainView.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
+            this.MainView.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
+            this.MainView.OptionsBehavior.Editable = false;
+            this.MainView.OptionsBehavior.ReadOnly = true;
             this.MainView.OptionsNavigation.AutoFocusNewRow = true;
             this.MainView.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways;
-            this.MainView.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
             this.MainView.OptionsView.ShowFooter = true;
             this.MainView.OptionsView.ShowGroupPanel = false;
             this.MainView.RowHeight = 30;
             // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "Cant";
+            this.gridColumn3.DisplayFormat.FormatString = "N2";
+            this.gridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.gridColumn3.FieldName = "Cantidad";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Cantidad", "Unidades = {0:N2}")});
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 0;
+            this.gridColumn3.Width = 71;
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "Unidad";
+            this.gridColumn4.ColumnEdit = this.UnidadLu;
+            this.gridColumn4.FieldName = "FK_Unidad";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 1;
+            // 
+            // UnidadLu
+            // 
+            this.UnidadLu.AutoHeight = false;
+            this.UnidadLu.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.UnidadLu.DisplayMember = "Descripcion";
+            this.UnidadLu.Name = "UnidadLu";
+            this.UnidadLu.ValueMember = "ID";
+            // 
             // gridColumn1
             // 
             this.gridColumn1.Caption = "Articulo";
+            this.gridColumn1.FieldName = "Descripcion";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 1;
+            this.gridColumn1.VisibleIndex = 2;
             this.gridColumn1.Width = 521;
             // 
             // gridColumn2
@@ -333,22 +375,13 @@ namespace POS
             this.gridColumn2.Caption = "Precio";
             this.gridColumn2.DisplayFormat.FormatString = "C2";
             this.gridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.gridColumn2.FieldName = "Precio";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "", "Total = {0:C2}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Precio", "Total = {0:C2}")});
             this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 2;
+            this.gridColumn2.VisibleIndex = 3;
             this.gridColumn2.Width = 105;
-            // 
-            // gridColumn3
-            // 
-            this.gridColumn3.Caption = "Unidades";
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "", "Unidades = {0:N2}")});
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 0;
-            this.gridColumn3.Width = 71;
             // 
             // PagosLayout
             // 
@@ -447,6 +480,11 @@ namespace POS
             this.SearchTx.Size = new System.Drawing.Size(415, 20);
             this.SearchTx.TabIndex = 0;
             // 
+            // FocusTimer
+            // 
+            this.FocusTimer.Interval = 1000;
+            this.FocusTimer.Tick += new System.EventHandler(this.FocusTimer_Tick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -471,6 +509,7 @@ namespace POS
             this.MainLayout.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SalesGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MainView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UnidadLu)).EndInit();
             this.PagosLayout.ResumeLayout(false);
             this.SearchLayout.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
@@ -522,5 +561,8 @@ namespace POS
         private DevExpress.XtraEditors.TextEdit UPCTx;
         private DevExpress.XtraEditors.GroupControl groupControl2;
         private DevExpress.XtraEditors.TextEdit SearchTx;
+        private System.Windows.Forms.Timer FocusTimer;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit UnidadLu;
     }
 }

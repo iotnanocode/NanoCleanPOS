@@ -78,6 +78,21 @@ namespace POS.Aux
             }
             return returRow;
         }
+        public string GetSingleValue(string str_COMMAND, List<CommandParameter> Parametros = null)
+        {
+            var resultRow = GetFirstRow(str_COMMAND, Parametros);
+            string resultValue;
+            if (resultRow!=null)
+            {
+                resultValue = resultRow[0].ToString();
+            }
+            else
+            {
+                resultValue = "";
+            }
+            return resultValue;
+
+        }
         public bool ExecuteScalar(string str_COMMAND,List<CommandParameter> Parametros=null)
         {
             bool hasResult = false;
