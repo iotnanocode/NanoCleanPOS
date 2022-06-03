@@ -62,7 +62,7 @@ namespace POS
             this.PagosLayout = new System.Windows.Forms.TableLayoutPanel();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
+            this.CancelarBt = new DevExpress.XtraEditors.SimpleButton();
             this.SearchLayout = new System.Windows.Forms.TableLayoutPanel();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.UPCTx = new DevExpress.XtraEditors.TextEdit();
@@ -393,7 +393,7 @@ namespace POS
             this.PagosLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.PagosLayout.Controls.Add(this.simpleButton2, 2, 0);
             this.PagosLayout.Controls.Add(this.simpleButton1, 1, 0);
-            this.PagosLayout.Controls.Add(this.simpleButton3, 0, 0);
+            this.PagosLayout.Controls.Add(this.CancelarBt, 0, 0);
             this.PagosLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PagosLayout.Location = new System.Drawing.Point(3, 376);
             this.PagosLayout.Name = "PagosLayout";
@@ -420,14 +420,15 @@ namespace POS
             this.simpleButton1.TabIndex = 3;
             this.simpleButton1.Text = "Efectivo";
             // 
-            // simpleButton3
+            // CancelarBt
             // 
-            this.simpleButton3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.simpleButton3.Location = new System.Drawing.Point(3, 3);
-            this.simpleButton3.Name = "simpleButton3";
-            this.simpleButton3.Size = new System.Drawing.Size(189, 67);
-            this.simpleButton3.TabIndex = 5;
-            this.simpleButton3.Text = "Cancelar";
+            this.CancelarBt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CancelarBt.Location = new System.Drawing.Point(3, 3);
+            this.CancelarBt.Name = "CancelarBt";
+            this.CancelarBt.Size = new System.Drawing.Size(189, 67);
+            this.CancelarBt.TabIndex = 5;
+            this.CancelarBt.Text = "Cancelar";
+            this.CancelarBt.Click += new System.EventHandler(this.CancelarBt_Click);
             // 
             // SearchLayout
             // 
@@ -545,7 +546,7 @@ namespace POS
         private System.Windows.Forms.TableLayoutPanel PagosLayout;
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
-        private DevExpress.XtraEditors.SimpleButton simpleButton3;
+        private DevExpress.XtraEditors.SimpleButton CancelarBt;
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
         private DevExpress.XtraBars.BarButtonItem ConfigBt;
         private DevExpress.XtraBars.BarButtonItem ReportsBt;

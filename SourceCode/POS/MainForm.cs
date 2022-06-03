@@ -146,5 +146,10 @@ namespace POS
             SalesGrid.DataSource = VENTA_DETALLE_LIST.Where(x => x.ID.Length > 0);
         }
 
+        private void CancelarBt_Click(object sender, EventArgs e)
+        {
+            VENTA_DETALLE_LIST.Clear();
+            SalesGrid.DataSource = VENTA_DETALLE_LIST.Where(x => x.ID.Length > 0);
+        }
     }
 }

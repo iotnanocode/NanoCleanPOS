@@ -145,7 +145,7 @@ namespace POS
                 Rectangle r = e.Bounds;
 
                 Image indicator = new Bitmap(Properties.Resources.delete);
-                e.Graphics.DrawImage(indicator, new Rectangle(e.Bounds.X + 10, e.Bounds.Y + 1, indicator.Width, indicator.Height));
+                e.Graphics.DrawImage(indicator, new Rectangle(e.Bounds.X + 8, e.Bounds.Y + 1, indicator.Width, indicator.Height));
                 e.Handled = true;
             }
         }
